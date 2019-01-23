@@ -5,7 +5,8 @@ const huertoSchema = new Schema({
     type: String
   },
   espacio: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'espacio'
   },
   inventario: {
     type: String
