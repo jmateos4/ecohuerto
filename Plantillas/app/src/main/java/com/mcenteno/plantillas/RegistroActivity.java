@@ -6,10 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    Button btnReset, btnRegister;
+    Button btnRegister;
     EditText etName, etLastName, etEmail, etPassword, etRepeatPassword, etPhone;
     CheckBox cbTerms;
 
@@ -18,20 +19,19 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        btnReset = findViewById(R.id.btnReset);
         etName = findViewById(R.id.etName);
         etLastName = findViewById(R.id.etLastName);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etRepeatPassword = findViewById(R.id.etRepeatPassword);
         etPhone = findViewById(R.id.etPhone);
-        btnRegister = findViewById(R.id.btnRegister);
         cbTerms = findViewById(R.id.cbTerms);
-
-        btnReset.setOnClickListener(new View.OnClickListener() {
+        btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (!cbTerms.isChecked())
+                    Toast.makeText(RegistroActivity.this, "Debe leer y aceptar los términos y condiciones.", Toast.LENGTH_SHORT).show();
             }
         });
     }
