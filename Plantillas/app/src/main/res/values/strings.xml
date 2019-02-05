@@ -7,4 +7,12 @@
   <string name="textAbout">About Us</string>
   <string name="textHuerto">EcoHuerto</string>
   <string name="textForgotPassword">Did you forget your password? Click Here</string>
+  <string name="hint_first_name">Nombre</string>
+  <string name="hint_last_name">Apellidos</string>
+  <string name="hint_repeat_password">Repita la contraseña</string>
+  <string name="hint_phone">Teléfono</string>
+  <string name="button_register_user">Registrarse</string>
+  <string name="checkbox_accept_terms">Acepto los términos y condiciones</string>
+  <string name="button_reset_fields">Reset campos</string>
+  <string name="action_settings">Ajustes</string>
 </resources>
