@@ -1,0 +1,22 @@
+Peticion POST - Registro (YA EXISTE, NO INTENTAR EL MISMO DE NUEVO)
+
+{
+	"access_token": "gGuNmouO7H9B6NM5LlIE676ThMHqUSJ3",
+	"email": "user@user.com",
+	"password": "pass1234",
+	"role": "user"
+}
+
+
+RESPONSE PETICION POST - Registro
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNTk3Y2U4ZTY3YmM5MDAyMmY1MjgzMSIsImlhdCI6MTU0OTM2ODU1Mn0.qXrgnSeF4xLsNxNstKEdSmyLpE2C_jERDJtWdlrMqk0",
+    "user": {
+        "id": "5c597ce8e67bc90022f52831",
+        "name": "user",
+        "picture": "https://gravatar.com/avatar/88b87698be0bc461f3cacf1f080929d5?d=identicon",
+        "email": "user@user.com",
+        "createdAt": "2019-02-05T12:09:12.160Z"
+    }
+}
