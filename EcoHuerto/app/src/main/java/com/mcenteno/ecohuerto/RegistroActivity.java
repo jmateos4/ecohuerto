@@ -53,7 +53,7 @@ public class RegistroActivity extends AppCompatActivity {
 
 
 
-
+/*
 
                     // Recoger los datos del formulario
                     String firstName = etName.getText().toString().trim();
@@ -95,7 +95,7 @@ public class RegistroActivity extends AppCompatActivity {
 
 
 
-
+*/
 
 
                 }
