@@ -23,8 +23,7 @@ public interface LoginService {
     //                               @Body Registro registro);
 
     @POST("/users")
-    Call<ResponseContainer> doRegister(@Query("access_token") String access_token,
-                                       @Body Registro registro);
+    Call<ResponseContainer> doRegister(@Body Registro registro);
 
 
 

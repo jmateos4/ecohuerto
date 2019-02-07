@@ -72,20 +72,14 @@ public class RegistroActivity extends AppCompatActivity {
 
                     LoginService service = ServiceGenerator.createService(LoginService.class);
 
-                    Call<ResponseContainer<RegistroResponse>> loginReponseCall = service.doRegister(, registro);
+                    Call<ResponseContainer<RegistroResponse>> loginReponseCall = service.doRegister(registro);
                     //.doRegister("lNeTI8waAqmpUZa7QSiLv53rqSnlsldv",
                     //        registro);
 
-                    loginReponseCall.enqueue(new Callback<LoginResponse>() {
+                    loginReponseCall.enqueue(new Callback<ResponseContainer>() {
                         @Override
-                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        public void onResponse(Call<ResponseContainer> call, Response<ResponseContainer> response) {
                             if (response.code() == 201) {
-                                // éxito
-                            /*
-                                Pasos:
-                                    1) Almacenar el token donde corresponda.
-                                    2) Lanzar el siguiente Activity.
-                             */
                                 //ServiceGenerator.jwtToken = response.body().getToken();
                                 UtilToken.setToken(RegistroActivity.this, response.body().getToken());
                                 startActivity(new Intent(RegistroActivity.this, UserListActivity.class));                            // Toast.makeText(RegistroActivity.this, "Usuario registrado y logeado con éxito", Toast.LENGTH_LONG).show();
