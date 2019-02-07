@@ -1,7 +1,7 @@
 package com.mcenteno.ecohuerto.retrofit.services;
 
-import com.mcenteno.plantillas.model.Registro;
-import com.mcenteno.plantillas.model.ResponseContainer;
+import com.mcenteno.ecohuerto.model.Registro;
+import com.mcenteno.ecohuerto.model.RegistroResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 public interface LoginService {
 
     @POST("/auth")
-    Call<ResponseContainer> doLogin(@Header("Authorization") String authorization);
+    Call<RegistroResponse> doLogin(@Header("Authorization") String authorization);
 
     // @POST("/auth")
     // Call<LoginResponse> doLogin();
@@ -22,7 +22,7 @@ public interface LoginService {
     //                               @Body Registro registro);
 
     @POST("/users")
-    Call<ResponseContainer> doRegister(@Body Registro registro);
+    Call<RegistroResponse> doRegister(@Body Registro registro);
 
 
 
