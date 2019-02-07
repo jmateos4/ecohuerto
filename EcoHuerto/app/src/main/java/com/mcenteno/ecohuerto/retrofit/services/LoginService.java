@@ -1,13 +1,8 @@
 package com.mcenteno.ecohuerto.retrofit.services;
 
-<<<<<<< HEAD
-
-import com.mcenteno.ecohuerto.model.Registro;
-import com.mcenteno.ecohuerto.model.ResponseContainer;
-=======
 import com.mcenteno.ecohuerto.model.Registro;
 import com.mcenteno.ecohuerto.model.RegistroResponse;
->>>>>>> 646b4effe7ec6ba2474a8000480f7363b8ff066f
+
 
 import retrofit2.Call;
 import retrofit2.http.Body;
