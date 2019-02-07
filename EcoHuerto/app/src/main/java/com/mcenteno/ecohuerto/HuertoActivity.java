@@ -13,8 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.mcenteno.ecohuerto.interfaces.HuertoInteractionListener;
+
 public class HuertoActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HuertoInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, HuertoInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

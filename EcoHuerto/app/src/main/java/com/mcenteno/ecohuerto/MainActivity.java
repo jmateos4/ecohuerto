@@ -39,5 +39,41 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+
+        /*
+
+
+
+
+        btnLogin = findViewById(R.id.buttonLogin);
+        btnSignUp = findViewById(R.id.text_signup);
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSignUp = new Intent(MainActivity.this, RegistroActivity.class);
+                startActivity(intentSignUp);
+            }
+        });
+
+        /*btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentLogeo = new Intent(MainActivity.this, InicioActivity.class);
+                startActivity(intentLogeo);
+            }
+        });
+
+
+
+
+        */
+
+
+
+
+
     }
 }

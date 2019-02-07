@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mcenteno.ecohuerto.interfaces.HuertoInteractionListener;
+import com.mcenteno.ecohuerto.model.Huerto;
+
 import java.util.ArrayList;
 import java.util.List;
 

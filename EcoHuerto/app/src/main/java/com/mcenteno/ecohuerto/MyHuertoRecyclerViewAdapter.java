@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.mcenteno.ecohuerto.interfaces.HuertoInteractionListener;
+import com.mcenteno.ecohuerto.model.Huerto;
+
 import java.util.List;
 
 public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRecyclerViewAdapter.ViewHolder> {

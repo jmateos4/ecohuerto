@@ -1,12 +1,18 @@
 package com.mcenteno.ecohuerto;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegistroActivity extends AppCompatActivity {
 
@@ -41,7 +47,57 @@ public class RegistroActivity extends AppCompatActivity {
                         || etPhone.getText().toString().matches("")) {
                     Toast.makeText(RegistroActivity.this, "Debe introducir todos los campos.", Toast.LENGTH_SHORT).show();
                 } else if (etEmail.getText().toString().matches("")) {
-                    
+
+                } else {
+
+
+
+
+
+
+                    // Recoger los datos del formulario
+                    String firstName = etName.getText().toString().trim();
+                    String lastName = etLastName.getText().toString().trim();
+                    String email = etEmail.getText().toString().trim();
+                    String pass = etPassword.getText().toString().trim();
+                    String phone = etPhone.getText().toString().trim();
+
+                    Registro registro = new Registro(firstName + " " + lastName, email, pass);
+
+                    LoginService service = ServiceGenerator.createService(LoginService.class);
+
+                    Call<ResponseContainer<RegistroResponse>> loginReponseCall = service.doRegister(registro);
+                    //.doRegister("lNeTI8waAqmpUZa7QSiLv53rqSnlsldv",
+                    //        registro);
+
+                    loginReponseCall.enqueue(new Callback<ResponseContainer>() {
+                        @Override
+                        public void onResponse(Call<ResponseContainer> call, Response<ResponseContainer> response) {
+                            if (response.code() == 201) {
+                                //ServiceGenerator.jwtToken = response.body().getToken();
+                                UtilToken.setToken(RegistroActivity.this, response.body().getToken());
+                                startActivity(new Intent(RegistroActivity.this, UserListActivity.class));                            // Toast.makeText(RegistroActivity.this, "Usuario registrado y logeado con éxito", Toast.LENGTH_LONG).show();
+                                // Log.d("token", response.body().getToken());
+
+                            } else {
+                                // error
+                                Toast.makeText(RegistroActivity.this, "Error en el registro. Revise los datos introducidos", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<LoginResponse> call, Throwable t) {
+                            Log.e("NetworkFailure", t.getMessage());
+                            Toast.makeText(RegistroActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
+
+
+
+
                 }
 
             }

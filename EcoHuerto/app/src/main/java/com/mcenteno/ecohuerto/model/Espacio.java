@@ -1,4 +1,4 @@
-package com.mcenteno.ecohuerto;
+package com.mcenteno.ecohuerto.model;
 
 public class Espacio {
 
