@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
 
     private static final String BASE_URL = "https://murmuring-citadel-56635.herokuapp.com/";
-    public static String MASTER_KEY = "gGuNmouO7H9B6NM5LlIE676ThMHqUSJ3";
+    public static String MASTER_KEY = "dqVU9SXEW0iAMvOZGv9lnz3q67ukPcDH";
 
     // Solución temporal
     public static String jwtToken = null;

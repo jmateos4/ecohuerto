@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentLogeo = new Intent(MainActivity.this, HuertoActivity.class);
+                Intent intentLogeo = new Intent(MainActivity.this, HuertoListActivity.class);
                 startActivity(intentLogeo);
             }
         });
