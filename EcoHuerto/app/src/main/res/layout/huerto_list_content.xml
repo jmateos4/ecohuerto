@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/localizacion"
+            android:id="@+id/direccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -44,9 +44,9 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/localizacion"
-            app:layout_constraintEnd_toStartOf="@+id/localizacion"
-            app:layout_constraintTop_toTopOf="@+id/localizacion"
+            app:layout_constraintBottom_toBottomOf="@+id/direccion"
+            app:layout_constraintEnd_toStartOf="@+id/direccion"
+            app:layout_constraintTop_toTopOf="@+id/direccion"
             app:srcCompat="@drawable/ic_location_on_black_24dp" />
 
     </android.support.constraint.ConstraintLayout>

@@ -1,50 +1,50 @@
 package com.mcenteno.ecohuerto.model;
 
+import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Espacio {
 
-    private String nombre;
-    private String dimension;
-    private Plantacion plantacion;
+    @SerializedName("plantaciones")
+    @Expose
+    private List<Object> plantaciones = null;
+    @SerializedName("dimensiones")
+    @Expose
+    private String dimensiones;
 
-    public Espacio(String nombre, String dimension, Plantacion plantacion) {
-        this.nombre = nombre;
-        this.dimension = dimension;
-        this.plantacion = plantacion;
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public Espacio() {
     }
 
-    public String getNombre() {
-        return nombre;
+    /**
+     *
+     * @param plantaciones
+     * @param dimensiones
+     */
+    public Espacio(List<Object> plantaciones, String dimensiones) {
+        super();
+        this.plantaciones = plantaciones;
+        this.dimensiones = dimensiones;
     }
 
-    public Espacio setNombre(String nombre) {
-        this.nombre = nombre;
-        return this;
+    public List<Object> getPlantaciones() {
+        return plantaciones;
     }
 
-    public String getDimension() {
-        return dimension;
+    public void setPlantaciones(List<Object> plantaciones) {
+        this.plantaciones = plantaciones;
     }
 
-    public Espacio setDimension(String dimension) {
-        this.dimension = dimension;
-        return this;
+    public String getDimensiones() {
+        return dimensiones;
     }
 
-    public Plantacion getPlantacion() {
-        return plantacion;
+    public void setDimensiones(String dimensiones) {
+        this.dimensiones = dimensiones;
     }
 
-    public Espacio setPlantacion(Plantacion plantacion) {
-        this.plantacion = plantacion;
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "Espacio{" +
-                "nombre='" + nombre + '\'' +
-                ", dimension='" + dimension + '\'' +
-                ", plantacion=" + plantacion +
-                '}';
-    }
 }
