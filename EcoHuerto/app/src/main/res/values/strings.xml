@@ -31,11 +31,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <string name="title_huerto_list">Huertos</string>
     <string name="title_huerto_detail">Huerto Detail</string>
-
 
     <!-- Preferencias -->
     <string name="sharedpreferences_filename">login</string>

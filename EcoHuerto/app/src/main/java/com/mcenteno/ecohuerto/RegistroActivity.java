@@ -43,7 +43,7 @@ public class RegistroActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!cbTerms.isChecked())
+                if (cbTerms.isChecked())
                     Toast.makeText(RegistroActivity.this, "Debe leer y aceptar los términos y condiciones.", Toast.LENGTH_SHORT).show();
                 else if (etName.getText().toString().matches("")
                         || etLastName.getText().toString().matches("")
@@ -52,7 +52,7 @@ public class RegistroActivity extends AppCompatActivity {
                         || etRepeatPassword.getText().toString().matches("")
                         || etPhone.getText().toString().matches("")) {
                     Toast.makeText(RegistroActivity.this, "Debe introducir todos los campos.", Toast.LENGTH_SHORT).show();
-                } else if (etEmail.getText().toString().matches("")) {
+                //} else if (etEmail.getText().toString().matches("")) {
 
                 } else {
 
@@ -77,7 +77,7 @@ public class RegistroActivity extends AppCompatActivity {
                                 UtilToken.setToken(RegistroActivity.this, response.body().getToken());
 
 
-                                /*
+                                /**
                                 IMPORTANTE CAMBIAR A QUE LLEVE A INICIO
                                  */
 
