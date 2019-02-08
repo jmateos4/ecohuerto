@@ -144,7 +144,7 @@ public class HuertoListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mNombreHuerto.setText(mValues.getRows().get(position).getNombre());
-            holder.mLocalizacion.setText(mValues.getRows().get(position).getLocalizacion());
+            holder.mDireccion.setText(mValues.getRows().get(position).getDireccion());
 
             holder.itemView.setTag(mValues.getRows().get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -157,12 +157,12 @@ public class HuertoListActivity extends AppCompatActivity {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView mNombreHuerto;
-            final TextView mLocalizacion;
+            final TextView mDireccion;
 
             ViewHolder(View view) {
                 super(view);
                 mNombreHuerto = (TextView) view.findViewById(R.id.nombre);
-                mLocalizacion = (TextView) view.findViewById(R.id.localizacion);
+                mDireccion = (TextView) view.findViewById(R.id.direccion);
             }
         }
     }

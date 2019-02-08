@@ -4,7 +4,6 @@ package com.mcenteno.ecohuerto.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
 public class Huerto {
 
     @SerializedName("id")
@@ -13,9 +12,15 @@ public class Huerto {
     @SerializedName("nombre")
     @Expose
     private String nombre;
-    @SerializedName("localizacion")
+    @SerializedName("direccion")
     @Expose
-    private String localizacion;
+    private String direccion;
+    @SerializedName("foto")
+    @Expose
+    private String foto;
+    @SerializedName("espacio")
+    @Expose
+    private Espacio espacio;
     @SerializedName("user")
     @Expose
     private String user;
@@ -34,19 +39,23 @@ public class Huerto {
     }
 
     /**
-     * 
+     *
      * @param updatedAt
      * @param nombre
      * @param id
+     * @param direccion
      * @param createdAt
-     * @param localizacion
+     * @param espacio
+     * @param foto
      * @param user
      */
-    public Huerto(String id, String nombre, String localizacion, String user, String createdAt, String updatedAt) {
+    public Huerto(String id, String nombre, String direccion, String foto, Espacio espacio, String user, String createdAt, String updatedAt) {
         super();
         this.id = id;
         this.nombre = nombre;
-        this.localizacion = localizacion;
+        this.direccion = direccion;
+        this.foto = foto;
+        this.espacio = espacio;
         this.user = user;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -68,12 +77,28 @@ public class Huerto {
         this.nombre = nombre;
     }
 
-    public String getLocalizacion() {
-        return localizacion;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setLocalizacion(String localizacion) {
-        this.localizacion = localizacion;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public Espacio getEspacio() {
+        return espacio;
+    }
+
+    public void setEspacio(Espacio espacio) {
+        this.espacio = espacio;
     }
 
     public String getUser() {
@@ -99,6 +124,5 @@ public class Huerto {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 
 }
