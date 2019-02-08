@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                             editor.commit();*/
                             UtilToken.setToken(MainActivity.this, response.body().getToken());
 
-                            startActivity(new Intent(MainActivity.this, HuertoListActivity.class));
+                            startActivity(new Intent(MainActivity.this, HuertoActivity.class));
                         }
                     }
 
