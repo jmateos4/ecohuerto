@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.mcenteno.ecohuerto.model.Huerto;
 import com.mcenteno.ecohuerto.model.HuertosResponse;
+import com.mcenteno.ecohuerto.model.ResponseContainer;
 import com.mcenteno.ecohuerto.retrofit.generator.ServiceGenerator;
 import com.mcenteno.ecohuerto.retrofit.generator.TipoAutenticacion;
 import com.mcenteno.ecohuerto.retrofit.services.HuertoService;
@@ -78,20 +79,20 @@ public class HuertoListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        Call<HuertosResponse> call = service.listHuerto(UtilToken.getToken(this));
-        call.enqueue(new Callback<HuertosResponse>() {
+        Call<ResponseContainer> call = service.listHuerto();
+        call.enqueue(new Callback<ResponseContainer>() {
             @Override
-            public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {
+            public void onResponse(Call<ResponseContainer> call, Response<ResponseContainer> response) {
                 if (response.isSuccessful()) {
-                    adapter = new SimpleItemRecyclerViewAdapter(HuertoListActivity.this, response.body(), mTwoPane);
-                    recyclerView.setAdapter(adapter);
+                    //adapter = new SimpleItemRecyclerViewAdapter(HuertoListActivity.this, response.body().getRows(), mTwoPane);
+                    //recyclerView.setAdapter(adapter);
                 } else {
                     // Toast
                 }
             }
 
             @Override
-            public void onFailure(Call<HuertosResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseContainer> call, Throwable t) {
                 // Toast
                 Log.i("onFailure", "error en retrofit");
             }

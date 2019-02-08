@@ -102,7 +102,10 @@ public class HuertoDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             final CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
 
-
+            /**
+             * tocar
+             */
+            /*
             Call<Huerto> call = service.oneHuerto(idHuerto, UtilToken.getToken(this.getContext()));
             call.enqueue(new Callback<Huerto>() {
                 @Override
@@ -136,6 +139,7 @@ public class HuertoDetailFragment extends Fragment {
                     Log.i("onFailure", "error en retrofit");
                 }
             });
+            */
 
         }
 

@@ -45,7 +45,7 @@ public class HuertoFragment extends Fragment {
     private Context ctx;
 
     private HuertoService service = ServiceGenerator.createService(HuertoService.class,
-            ServiceGenerator.jwtToken, TipoAutenticacion.JWT);
+            UtilToken.getToken(ctx), TipoAutenticacion.JWT);
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
