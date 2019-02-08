@@ -43,17 +43,19 @@ public class RegistroActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbTerms.isChecked())
-                    Toast.makeText(RegistroActivity.this, "Debe leer y aceptar los términos y condiciones.", Toast.LENGTH_SHORT).show();
-                else if (etName.getText().toString().matches("")
+                if (etName.getText().toString().matches("")
                         || etLastName.getText().toString().matches("")
                         || etEmail.getText().toString().matches("")
                         || etPassword.getText().toString().matches("")
                         || etRepeatPassword.getText().toString().matches("")
                         || etPhone.getText().toString().matches("")) {
                     Toast.makeText(RegistroActivity.this, "Debe introducir todos los campos.", Toast.LENGTH_SHORT).show();
-                //} else if (etEmail.getText().toString().matches("")) {
-
+                } else if(!cbTerms.isChecked()) {
+                    Toast.makeText(RegistroActivity.this, "Debe leer y aceptar los términos y condiciones.", Toast.LENGTH_SHORT).show();
+                } else if (!etEmail.getText().toString().matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$")) {
+                    Toast.makeText(RegistroActivity.this, "Debe introducir un correo válido.", Toast.LENGTH_SHORT).show();
+                } else if (!etPassword.equals(etRepeatPassword)) {
+                    Toast.makeText(RegistroActivity.this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
                 } else {
 
                     // Recoger los datos del formulario
