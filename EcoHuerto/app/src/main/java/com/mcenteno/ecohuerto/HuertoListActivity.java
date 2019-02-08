@@ -78,7 +78,7 @@ public class HuertoListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        Call<HuertosResponse> call = service.listHuerto("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNWMwZjU4ZTE1YjY2MDAyMjE5YjU3MCIsImlhdCI6MTU0OTU0MjU1M30.wPQXTmzo4CCRImyoP0PhAhJI6-1FdfytGIMJvP6oM-g");
+        Call<HuertosResponse> call = service.listHuerto(UtilToken.getToken(this));
         call.enqueue(new Callback<HuertosResponse>() {
             @Override
             public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {

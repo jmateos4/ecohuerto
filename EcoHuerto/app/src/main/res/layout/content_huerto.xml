@@ -12,7 +12,6 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="155dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -61,7 +60,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.mcenteno.ecohuerto.HuertoFragment"
+        android:name="com.mcenteno.ecohuerto.HuertoDetailFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

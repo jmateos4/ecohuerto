@@ -103,7 +103,7 @@ public class HuertoDetailFragment extends Fragment {
             final CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
 
 
-            Call<Huerto> call = service.oneHuerto(idHuerto, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNWMwZjU4ZTE1YjY2MDAyMjE5YjU3MCIsImlhdCI6MTU0OTU0MjU1M30.wPQXTmzo4CCRImyoP0PhAhJI6-1FdfytGIMJvP6oM-g");
+            Call<Huerto> call = service.oneHuerto(idHuerto, UtilToken.getToken(this.getContext()));
             call.enqueue(new Callback<Huerto>() {
                 @Override
                 public void onResponse(Call<Huerto> call, Response<Huerto> response) {
