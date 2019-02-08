@@ -78,12 +78,6 @@ public class RegistroActivity extends AppCompatActivity {
                                 //ServiceGenerator.jwtToken = response.body().getToken();
                                 UtilToken.setToken(RegistroActivity.this, response.body().getToken());
 
-
-                                /**
-                                IMPORTANTE CAMBIAR A QUE LLEVE A INICIO
-                                 */
-
-
                                 startActivity(new Intent(RegistroActivity.this, HuertoListActivity.class));                        // Toast.makeText(RegistroActivity.this, "Usuario registrado y logeado con éxito", Toast.LENGTH_LONG).show();
                                 Log.d("token", response.body().getToken());
 
