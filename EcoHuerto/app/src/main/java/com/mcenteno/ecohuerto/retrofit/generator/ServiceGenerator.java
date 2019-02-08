@@ -45,6 +45,28 @@ public class ServiceGenerator {
      * @return El servicio ya creado
      */
     public static <S> S createService(Class<S> serviceClass) {
+
+
+        httpClientBuilder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request original = chain.request();
+                HttpUrl originalUrl = original.url();
+
+                HttpUrl url = originalUrl.newBuilder()
+                        .addQueryParameter("access_token", MASTER_KEY)
+                        .build();
+
+                Request request = original.newBuilder()
+                        .url(url)
+                        .build();
+
+
+                return chain.proceed(request);
+            }
+        });
+
+
         return createService(serviceClass, null, TipoAutenticacion.SIN_AUTENTICACION);
     }
 
