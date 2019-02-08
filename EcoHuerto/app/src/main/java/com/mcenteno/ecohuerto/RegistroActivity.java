@@ -54,7 +54,7 @@ public class RegistroActivity extends AppCompatActivity {
                     Toast.makeText(RegistroActivity.this, "Debe leer y aceptar los términos y condiciones.", Toast.LENGTH_SHORT).show();
                 } else if (!etEmail.getText().toString().matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$")) {
                     Toast.makeText(RegistroActivity.this, "Debe introducir un correo válido.", Toast.LENGTH_SHORT).show();
-                } else if (!etPassword.equals(etRepeatPassword)) {
+                } else if (!etPassword.getText().toString().equals(etRepeatPassword.getText().toString())) {
                     Toast.makeText(RegistroActivity.this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
                 } else {
 
@@ -84,7 +84,7 @@ public class RegistroActivity extends AppCompatActivity {
                                  */
 
 
-                                startActivity(new Intent(RegistroActivity.this, MainActivity.class));                            // Toast.makeText(RegistroActivity.this, "Usuario registrado y logeado con éxito", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(RegistroActivity.this, HuertoListActivity.class));                        // Toast.makeText(RegistroActivity.this, "Usuario registrado y logeado con éxito", Toast.LENGTH_LONG).show();
                                 Log.d("token", response.body().getToken());
 
                             } else {
