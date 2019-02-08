@@ -43,20 +43,6 @@ public class RegistroActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                /**
-                 * prueba
-                 */
-                etName.setText("Prueba");
-                etLastName.setText("Prueba");
-                etEmail.setText("prueba@gmail.com");
-                etPassword.setText("pass1234");
-                etPhone.setText("1234567890");
-
-                etRepeatPassword.setText("pass1234");
-
-
                 if (cbTerms.isChecked())
                     Toast.makeText(RegistroActivity.this, "Debe leer y aceptar los términos y condiciones.", Toast.LENGTH_SHORT).show();
                 else if (etName.getText().toString().matches("")
