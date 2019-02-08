@@ -91,7 +91,7 @@ public class RegistroActivity extends AppCompatActivity {
                                 UtilToken.setToken(RegistroActivity.this, response.body().getToken());
 
 
-                                /*
+                                /**
                                 IMPORTANTE CAMBIAR A QUE LLEVE A INICIO
                                  */
 
