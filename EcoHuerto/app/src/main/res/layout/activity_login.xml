@@ -36,7 +36,7 @@
                 tools:ignore="VectorDrawableCompat" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/email"
                 style="@style/Base.Widget.MaterialComponents.TextInputEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                 android:textColorHighlight="@android:color/background_light"
                 android:textColorHint="@android:color/background_light"
                 android:textIsSelectable="false"
-                app:layout_constraintBottom_toTopOf="@+id/editText2"
+                app:layout_constraintBottom_toTopOf="@+id/password"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
                 app:layout_constraintVertical_chainStyle="spread" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/password"
                 style="@style/Base.Widget.MaterialComponents.TextInputEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintTop_toBottomOf="@+id/email" />
 
             <Button
                 android:id="@+id/buttonLogin"
@@ -112,7 +112,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                app:layout_constraintTop_toBottomOf="@+id/password" />
 
             <Button
                 android:id="@+id/buttonGoogle"
