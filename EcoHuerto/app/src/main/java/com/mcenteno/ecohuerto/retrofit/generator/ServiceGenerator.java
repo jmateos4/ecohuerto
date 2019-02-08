@@ -14,8 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    private static final String BASE_URL = "https://nameless-retreat-76131.herokuapp.com/";
-    public static String MASTER_KEY = "gGuNmouO7H9B6NM5LlIE676ThMHqUSJ3";
+    private static final String BASE_URL = "https://murmuring-citadel-56635.herokuapp.com/";
+    public static String MASTER_KEY = "dqVU9SXEW0iAMvOZGv9lnz3q67ukPcDH";
 
     // Solución temporal
     public static String jwtToken = null;
@@ -45,6 +45,28 @@ public class ServiceGenerator {
      * @return El servicio ya creado
      */
     public static <S> S createService(Class<S> serviceClass) {
+
+
+        httpClientBuilder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request original = chain.request();
+                HttpUrl originalUrl = original.url();
+
+                HttpUrl url = originalUrl.newBuilder()
+                        .addQueryParameter("access_token", MASTER_KEY)
+                        .build();
+
+                Request request = original.newBuilder()
+                        .url(url)
+                        .build();
+
+
+                return chain.proceed(request);
+            }
+        });
+
+
         return createService(serviceClass, null, TipoAutenticacion.SIN_AUTENTICACION);
     }
 
