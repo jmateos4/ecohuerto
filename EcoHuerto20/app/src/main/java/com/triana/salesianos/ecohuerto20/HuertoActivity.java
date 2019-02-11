@@ -119,7 +119,7 @@ public class HuertoActivity extends AppCompatActivity
     }
 
     @Override
-    public void borrarHuerto(String id) {
+    public void borrarHuerto(final String idHuerto) {
         // 1. Instantiate an AlertDialog.Builder with its constructor
         AlertDialog.Builder builder = new AlertDialog.Builder(HuertoActivity.this);
 
@@ -129,7 +129,7 @@ public class HuertoActivity extends AppCompatActivity
 
         builder.setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Call call = service.listHuerto();
+                Call call = service.borrarHuerto(idHuerto);
                 call.enqueue(new Callback() {
                     @Override
                     public void onResponse(Call call, Response response) {
