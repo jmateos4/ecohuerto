@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
@@ -38,19 +39,15 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mValues.get(position);
         holder.mNombre.setText(mValues.get(position).getNombre());
         holder.mDireccion.setText(mValues.get(position).getDireccion());
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.mBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    //mListener.HuertoInteractionListener(holder.mItem);
-                }
+                mListener.borrarHuerto(mValues.get(position).getId());
             }
         });
     }
@@ -64,6 +61,7 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
         public final View mView;
         public final TextView mNombre;
         public final TextView mDireccion;
+        public final Button mBorrar;
         public HuertosResponse mItem;
 
         public ViewHolder(View view) {
@@ -71,6 +69,7 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
             mView = view;
             mNombre = view.findViewById(R.id.nombre);
             mDireccion = view.findViewById(R.id.direccion);
+            mBorrar = view.findViewById(R.id.btnBorrar);
         }
     }
 }
