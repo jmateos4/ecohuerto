@@ -5,6 +5,7 @@ import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -14,5 +15,8 @@ public interface HuertoService {
     Call<ResponseContainer<HuertosResponse>> listHuerto();
 
     @GET("huertos/{id}")
-    Call<Huerto> oneHuerto(@Path("id") String id);
+    Call<HuertosResponse> oneHuerto(@Path("id") String id);
+
+    @DELETE("huertos/{id}")
+    Call borrarHuerto(@Path("id") String id);
 }

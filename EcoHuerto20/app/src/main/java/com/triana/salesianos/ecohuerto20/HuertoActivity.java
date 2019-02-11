@@ -1,8 +1,10 @@
 package com.triana.salesianos.ecohuerto20;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,11 +14,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
+import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HuertoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HuertoInteractionListener {
+
+    private HuertoService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +38,8 @@ public class HuertoActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        service = ServiceGenerator.createService(HuertoService.class,
+                UtilToken.getToken(this), TipoAutenticacion.JWT);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -42,6 +49,11 @@ public class HuertoActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void mostrarDialogBorrarUsuario() {
+        DialogFragment dialog = BorrarUsuarioFragment.newInstance(1);
+        dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
     }
 
     @Override
@@ -103,6 +115,51 @@ public class HuertoActivity extends AppCompatActivity
 
     @Override
     public void onClickHuerto(String nombre) {
-        
+
     }
+
+    @Override
+    public void borrarHuerto(final String idHuerto) {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(HuertoActivity.this);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(R.string.dialog_message)
+                .setTitle(R.string.dialog_title);
+
+        builder.setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Call call = service.borrarHuerto(idHuerto);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(HuertoActivity.this, "Borrado satisfactoriamente", Toast.LENGTH_LONG);
+                        } else {
+                            Toast.makeText(HuertoActivity.this, "No se ha borrado", Toast.LENGTH_LONG);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        // Toast
+                        Log.i("onFailure", "error en retrofit");
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+
+        // 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+    }
+
 }

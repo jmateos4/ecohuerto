@@ -8,7 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.ImageView;
+=======
+import android.widget.Button;
+>>>>>>> 5b774750df7012218b777e35b6188b39cbc0fbdd
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -45,11 +49,12 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mValues.get(position);
         holder.mNombre.setText(mValues.get(position).getNombre());
         holder.mDireccion.setText(mValues.get(position).getDireccion());
 
+<<<<<<< HEAD
         Glide
                 .with(ctx)
                 .load(mValues.get(position).getFoto())
@@ -62,13 +67,12 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
                 });
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
+=======
+        holder.mBorrar.setOnClickListener(new View.OnClickListener() {
+>>>>>>> 5b774750df7012218b777e35b6188b39cbc0fbdd
             @Override
             public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    //mListener.HuertoInteractionListener(holder.mItem);
-                }
+                mListener.borrarHuerto(mValues.get(position).getId());
             }
         });
     }
@@ -82,7 +86,11 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
         public final View mView;
         public final TextView mNombre;
         public final TextView mDireccion;
+<<<<<<< HEAD
         public final ImageView mFotoHuerto;
+=======
+        public final Button mBorrar;
+>>>>>>> 5b774750df7012218b777e35b6188b39cbc0fbdd
         public HuertosResponse mItem;
 
         public ViewHolder(View view) {
@@ -90,7 +98,11 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
             mView = view;
             mNombre = view.findViewById(R.id.nombre);
             mDireccion = view.findViewById(R.id.direccion);
+<<<<<<< HEAD
             mFotoHuerto = view.findViewById(R.id.fotoHuerto);
+=======
+            mBorrar = view.findViewById(R.id.btnBorrar);
+>>>>>>> 5b774750df7012218b777e35b6188b39cbc0fbdd
         }
     }
 }
