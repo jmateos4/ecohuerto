@@ -1,4 +1,4 @@
-package com.mcenteno.ecohuerto;
+package com.triana.salesianos.ecohuerto20;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.mcenteno.ecohuerto.interfaces.HuertoInteractionListener;
+import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
 
 public class HuertoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HuertoInteractionListener {
@@ -34,7 +34,7 @@ public class HuertoActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -57,7 +57,7 @@ public class HuertoActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_huerto_drawer, menu);
+        getMenuInflater().inflate(R.menu.huerto, menu);
         return true;
     }
 
@@ -103,6 +103,6 @@ public class HuertoActivity extends AppCompatActivity
 
     @Override
     public void onClickHuerto(String nombre) {
-
+        
     }
 }

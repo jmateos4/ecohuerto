@@ -1,4 +1,4 @@
-package com.mcenteno.ecohuerto;
+package com.triana.salesianos.ecohuerto20;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,11 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mcenteno.ecohuerto.interfaces.HuertoInteractionListener;
-import com.mcenteno.ecohuerto.model.ResponseContainer;
-import com.mcenteno.ecohuerto.retrofit.generator.ServiceGenerator;
-import com.mcenteno.ecohuerto.retrofit.generator.TipoAutenticacion;
-import com.mcenteno.ecohuerto.retrofit.services.HuertoService;
+import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
+import com.triana.salesianos.ecohuerto20.model.Huerto;
+import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
+import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
+import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +28,7 @@ import retrofit2.Response;
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link HuertoInteractionListener}
+ * Activities containing this fragment MUST implement the {@link com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener}
  * interface.
  */
 public class HuertoFragment extends Fragment {
@@ -34,10 +38,8 @@ public class HuertoFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private HuertoInteractionListener mListener;
-    private Context ctx;
 
-    private HuertoService service = ServiceGenerator.createService(HuertoService.class,
-            UtilToken.getToken(ctx), TipoAutenticacion.JWT);
+    private Context ctx;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -81,19 +83,16 @@ public class HuertoFragment extends Fragment {
             }
 
             /**
-             * llamada a la api para listar huerto
+             *
              */
 
+            HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                    UtilToken.getToken(ctx), TipoAutenticacion.JWT);
 
-            /*
-            @GET("huertos")
-    Call<HuertosResponse> listHuerto(@Query("access_token") String access_token);
-             */
-
-            Call<ResponseContainer> call = service.listHuerto();
-            call.enqueue(new Callback<ResponseContainer>() {
+            Call<ResponseContainer<HuertosResponse>> call = service.listHuerto();
+            call.enqueue(new Callback<ResponseContainer<HuertosResponse>>() {
                 @Override
-                public void onResponse(Call<ResponseContainer> call, Response<ResponseContainer> response) {
+                public void onResponse(Call<ResponseContainer<HuertosResponse>> call, Response<ResponseContainer<HuertosResponse>> response) {
                     if (response.isSuccessful()) {
                         recyclerView.setAdapter(new MyHuertoRecyclerViewAdapter(ctx, response.body().getRows(), mListener));
                     } else {
@@ -104,14 +103,16 @@ public class HuertoFragment extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<ResponseContainer> call, Throwable t) {
+                public void onFailure(Call<ResponseContainer<HuertosResponse>> call, Throwable t) {
                     // Toast
                     Log.i("onFailure", "error en retrofit");
                 }
             });
 
-
-
+            /**
+             *
+             */
+            //recyclerView.setAdapter(new MyHuertoRecyclerViewAdapter(ctx, DummyContent.ITEMS, mListener));
         }
         return view;
     }
@@ -125,7 +126,7 @@ public class HuertoFragment extends Fragment {
             mListener = (HuertoInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+                    + " must implement HuertoInteractionListener");
         }
     }
 
@@ -134,6 +135,4 @@ public class HuertoFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-
 }
