@@ -72,7 +72,8 @@ public class LoginActivity extends AppCompatActivity {
                             editor.commit();*/
                             UtilToken.setToken(LoginActivity.this, response.body().getToken());
 
-                            startActivity(new Intent(LoginActivity.this, HuertoActivity.class));
+                            //startActivity(new Intent(LoginActivity.this, HuertoActivity.class));
+                            startActivity(new Intent(LoginActivity.this, PruebaDetailActivity.class));
                         }
                     }
 

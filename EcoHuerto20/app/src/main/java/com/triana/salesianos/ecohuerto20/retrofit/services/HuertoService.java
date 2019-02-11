@@ -14,5 +14,5 @@ public interface HuertoService {
     Call<ResponseContainer<HuertosResponse>> listHuerto();
 
     @GET("huertos/{id}")
-    Call<Huerto> oneHuerto(@Path("id") String id);
+    Call<HuertosResponse> oneHuerto(@Path("id") String id);
 }

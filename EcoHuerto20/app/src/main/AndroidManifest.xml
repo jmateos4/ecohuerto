@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,20 @@
             android:name=".HuertoActivity"
             android:label="@string/title_activity_huerto"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegistroActivity"></activity>
+        <activity android:name=".RegistroActivity" />
+        <activity
+            android:name=".PruebaListActivity"
+            android:label="@string/title_prueba_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".PruebaDetailActivity"
+            android:label="@string/title_prueba_detail"
+            android:parentActivityName=".PruebaListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.triana.salesianos.ecohuerto20.PruebaListActivity" />
+        </activity>
     </application>
 
 </manifest>
