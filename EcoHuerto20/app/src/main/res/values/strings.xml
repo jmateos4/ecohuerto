@@ -37,4 +37,8 @@
     <string name="jwt_key">JWT_KEY</string>
     <string name="title_prueba_list">Pruebas</string>
     <string name="title_prueba_detail">Prueba Detail</string>
+    <string name="borrar">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_title">Delete</string>
+    <string name="dialog_message">Do you really want to delete?</string>
 </resources>
