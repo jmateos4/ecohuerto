@@ -45,8 +45,7 @@ public class PruebaListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
-    HuertoService service = ServiceGenerator.createService(HuertoService.class,
-            ServiceGenerator.jwtToken, TipoAutenticacion.JWT);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +84,10 @@ public class PruebaListActivity extends AppCompatActivity {
     }*/
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
+
+        HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                UtilToken.getToken(this), TipoAutenticacion.JWT);
+
         Call<ResponseContainer<HuertosResponse>> call = service.listHuerto();
         call.enqueue(new Callback<ResponseContainer<HuertosResponse>>() {
             @Override
