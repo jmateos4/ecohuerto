@@ -16,13 +16,14 @@
             android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fotoHuerto"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -30,12 +31,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="TextView"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/nombre"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/nombre" />
 
         <ImageView
@@ -44,10 +46,22 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/direccion"
             app:layout_constraintEnd_toStartOf="@+id/direccion"
+            app:layout_constraintStart_toStartOf="@+id/nombre"
             app:layout_constraintTop_toTopOf="@+id/direccion"
             app:srcCompat="@drawable/ic_location_on_black_24dp"
             tools:ignore="VectorDrawableCompat" />
 
+<<<<<<< HEAD
+        <ImageView
+            android:id="@+id/fotoHuerto"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars[0]" />
+=======
         <Button
             android:id="@+id/btnBorrar"
             android:layout_width="52dp"
@@ -59,6 +73,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+>>>>>>> 5b774750df7012218b777e35b6188b39cbc0fbdd
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
