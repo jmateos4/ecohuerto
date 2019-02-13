@@ -157,11 +157,14 @@ public class HuertoListActivity extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
+            public final View mView;
             final TextView mNombreHuerto;
             final TextView mDireccion;
+            public HuertosResponse mItem;
 
             ViewHolder(View view) {
                 super(view);
+                mView = view;
                 mNombreHuerto = (TextView) view.findViewById(R.id.nombre);
                 mDireccion = (TextView) view.findViewById(R.id.direccion);
             }

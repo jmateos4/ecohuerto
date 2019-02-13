@@ -9,13 +9,24 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
+import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
+import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
+
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * An activity representing a list of Pruebas. This activity
@@ -26,6 +37,8 @@ import java.util.List;
  * item details side-by-side using two vertical panes.
  */
 public class PruebaListActivity extends AppCompatActivity {
+
+
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -64,15 +77,38 @@ public class PruebaListActivity extends AppCompatActivity {
         setupRecyclerView((RecyclerView) recyclerView);
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+    private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
+
+        HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                UtilToken.getToken(this), TipoAutenticacion.JWT);
+
+        Call<ResponseContainer<HuertosResponse>> call = service.listHuerto();
+        call.enqueue(new Callback<ResponseContainer<HuertosResponse>>() {
+            @Override
+            public void onResponse(Call<ResponseContainer<HuertosResponse>> call, Response<ResponseContainer<HuertosResponse>> response) {
+                if (response.isSuccessful()) {
+                    //adapter = new SimpleItemRecyclerViewAdapter(HuertoListActivity.this, response.body().getRows(), mTwoPane);
+                    //recyclerView.setAdapter(adapter);
+
+                    recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(PruebaListActivity.this, response.body().getRows(), mTwoPane));
+                } else {
+                    // Toast
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseContainer<HuertosResponse>> call, Throwable t) {
+                // Toast
+                Log.i("onFailure", "error en retrofit");
+            }
+        });
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final ItemListActivity mParentActivity;
-        private final List<DummyContent.DummyItem> mValues;
+        private final PruebaListActivity mParentActivity;
+        private final List<> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
@@ -97,7 +133,7 @@ public class PruebaListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(PruebaListActivity parent,
-                                      List<DummyContent.DummyItem> items,
+                                      List<HuertosResponse> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
@@ -126,13 +162,14 @@ public class PruebaListActivity extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            final TextView mIdView;
-            final TextView mContentView;
+            final TextView mNombre;
+            final TextView mDireccion;
+
 
             ViewHolder(View view) {
                 super(view);
-                mIdView = view.findViewById(R.id.id_text);
-                mContentView = view.findViewById(R.id.content);
+                mNombre = view.findViewById(R.id.nombre);
+                mDireccion = view.findViewById(R.id.direccion);
             }
         }
     }
