@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                             UtilToken.setToken(LoginActivity.this, response.body().getToken());
 
                             //startActivity(new Intent(LoginActivity.this, HuertoActivity.class));
-                            startActivity(new Intent(LoginActivity.this, PruebaListActivity.class));
+                            startActivity(new Intent(LoginActivity.this, HuertoActivity.class));
                         }
                     }
 
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentRegistro = new Intent(LoginActivity.this, HuertoActivity.class);
+                Intent intentRegistro = new Intent(LoginActivity.this, RegistroActivity.class);
                 startActivity(intentRegistro);
             }
         });
