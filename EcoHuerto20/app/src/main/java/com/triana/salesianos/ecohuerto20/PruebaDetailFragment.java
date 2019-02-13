@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -58,36 +59,20 @@ public class PruebaDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            //mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
-
-
-
-
-
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.getNombre());
-            }
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.prueba_detail, container, false);
+        final View[] v = new View[1];
 
         // Show the dummy content as text in a TextView.
-        if (mItem != null) {
+        if (mItem == null) {
 
             final String idHuerto = getArguments().getString(ARG_ITEM_ID);
 
             Activity activity = this.getActivity();
-            final CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+            final CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
 
             Call<HuertosResponse> call = service.oneHuerto(idHuerto);
             call.enqueue(new Callback<HuertosResponse>() {
@@ -107,13 +92,22 @@ public class PruebaDetailFragment extends Fragment {
                                         appBarLayout.setBackground(resource);
                                     }
                                 });
+                        View rootView = inflater.inflate(R.layout.prueba_detail, container, false);
                         ((TextView) rootView.findViewById(R.id.direccion)).setText(mItem.getDireccion());
                         ((TextView) rootView.findViewById(R.id.nombre)).setText(mItem.getEspacio().getDimensiones());
+
+                        v[0] = rootView;
+
+                        if (getArguments().containsKey(ARG_ITEM_ID)) {
+                            Activity activity = PruebaDetailFragment.this.getActivity();
+                            CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
+                            if (appBarLayout != null) {
+                                appBarLayout.setTitle(mItem.getNombre());
+                            }
+                        }
                     } else {
-                        // Toast
+                        //Toast.makeText(PruebaDetailFragment.this, "Fallo de consulta", Toast.LENGTH_LONG).show();
                     }
-
-
                 }
 
                 @Override
@@ -127,6 +121,6 @@ public class PruebaDetailFragment extends Fragment {
 
 
 
-        return rootView;
+        return v[0];
     }
 }

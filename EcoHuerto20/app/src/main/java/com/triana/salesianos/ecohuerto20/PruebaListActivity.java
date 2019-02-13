@@ -133,7 +133,7 @@ public class PruebaListActivity extends AppCompatActivity {
                             .commit();
                 } else {
                     Context context = view.getContext();
-                    Intent intent = new Intent(context, PruebaDetailFragment.class);
+                    Intent intent = new Intent(context, PruebaDetailActivity.class);
                     intent.putExtra(PruebaDetailFragment.ARG_ITEM_ID, item.getId());
 
                     context.startActivity(intent);
