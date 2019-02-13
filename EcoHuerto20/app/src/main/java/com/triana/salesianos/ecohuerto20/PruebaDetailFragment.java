@@ -17,7 +17,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.triana.salesianos.ecohuerto20.model.Huerto;
 import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
+import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
@@ -42,7 +44,7 @@ public class PruebaDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private HuertosResponse mItem;
+    private Huerto mItem;
 
     private HuertoService service = ServiceGenerator.createService(HuertoService.class,
             ServiceGenerator.jwtToken, TipoAutenticacion.JWT);
@@ -62,24 +64,30 @@ public class PruebaDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View[] v = new View[1];
+        final View rootView = inflater.inflate(R.layout.prueba_detail, container, false);
 
         // Show the dummy content as text in a TextView.
-        if (mItem == null) {
+
+        if (getArguments().containsKey(ARG_ITEM_ID)) {
+            // Load the dummy content specified by the fragment
+            // arguments. In a real-world scenario, use a Loader
+            // to load content from a content provider.
+
 
             final String idHuerto = getArguments().getString(ARG_ITEM_ID);
 
             Activity activity = this.getActivity();
-            final CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
+            final CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
 
-            Call<HuertosResponse> call = service.oneHuerto(idHuerto);
-            call.enqueue(new Callback<HuertosResponse>() {
+
+            Call<Huerto> call = service.oneHuerto(idHuerto);
+            call.enqueue(new Callback<Huerto>() {
                 @Override
-                public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {
+                public void onResponse(Call<Huerto> call, Response<Huerto> response) {
                     if (response.isSuccessful()) {
-                        mItem = new HuertosResponse(idHuerto, response.body().getNombre(), response.body().getDireccion(), response.body().getFoto(), response.body().getEspacio(), response.body().getUser(), response.body().getCreatedAt(), response.body().getUpdatedAt());
+                        mItem = new Huerto(idHuerto, response.body().getNombre(), response.body().getDireccion(), response.body().getFoto(), response.body().getEspacio(), response.body().getUser(), response.body().getCreatedAt(), response.body().getUpdatedAt());
                         appBarLayout.setTitle(mItem.getNombre());
                         //appBarLayout.setBackground(LoadImageFromWebOperations(mItem.getFoto()));
                         Glide
@@ -92,35 +100,26 @@ public class PruebaDetailFragment extends Fragment {
                                         appBarLayout.setBackground(resource);
                                     }
                                 });
-                        View rootView = inflater.inflate(R.layout.prueba_detail, container, false);
-                        ((TextView) rootView.findViewById(R.id.direccion)).setText(mItem.getDireccion());
-                        ((TextView) rootView.findViewById(R.id.nombre)).setText(mItem.getEspacio().getDimensiones());
-
-                        v[0] = rootView;
-
-                        if (getArguments().containsKey(ARG_ITEM_ID)) {
-                            Activity activity = PruebaDetailFragment.this.getActivity();
-                            CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
-                            if (appBarLayout != null) {
-                                appBarLayout.setTitle(mItem.getNombre());
-                            }
-                        }
+                        ((TextView) rootView.findViewById(R.id.localizacion_detail)).setText(mItem.getDireccion());
+                        ((TextView) rootView.findViewById(R.id.dimension_detail)).setText(mItem.getEspacio().getDimensiones());
                     } else {
-                        //Toast.makeText(PruebaDetailFragment.this, "Fallo de consulta", Toast.LENGTH_LONG).show();
+                        // Toast
                     }
+
+
                 }
 
                 @Override
-                public void onFailure(Call<HuertosResponse> call, Throwable t) {
+                public void onFailure(Call<Huerto> call, Throwable t) {
                     // Toast
                     Log.i("onFailure", "error en retrofit");
                 }
             });
 
+
         }
 
 
-
-        return v[0];
+        return rootView;
     }
 }
