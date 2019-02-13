@@ -24,6 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressWarnings("unchecked")
 public class HuertoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HuertoInteractionListener {
 
