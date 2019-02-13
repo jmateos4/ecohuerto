@@ -89,11 +89,7 @@ public class PruebaListActivity extends AppCompatActivity {
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, PruebaDetailActivity.class);
-<<<<<<< HEAD
                     intent.putExtra(PruebaDetailFragment.ARG_ITEM_ID, item.getId());
-=======
-                    intent.putExtra(PruebaDetailFragment.ARG_ITEM_ID, item.id);
->>>>>>> 0fed6f3a1be78bb8b47c73ff085231b61ce1e482
 
                     context.startActivity(intent);
                 }
