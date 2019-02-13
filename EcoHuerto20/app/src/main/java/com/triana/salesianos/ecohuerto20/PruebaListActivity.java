@@ -2,8 +2,10 @@ package com.triana.salesianos.ecohuerto20;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,9 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
@@ -108,15 +114,15 @@ public class PruebaListActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final PruebaListActivity mParentActivity;
-        private final List<> mValues;
+        private final List<HuertosResponse> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
+                HuertosResponse item = (HuertosResponse) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(PruebaDetailFragment.ARG_ITEM_ID, item.id);
+                    arguments.putString(PruebaDetailFragment.ARG_ITEM_ID, item.getId());
                     PruebaDetailFragment fragment = new PruebaDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -149,8 +155,9 @@ public class PruebaListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mItem = mValues.get(position);
+            holder.mNombre.setText(mValues.get(position).getNombre());
+            holder.mDireccion.setText(mValues.get(position).getDireccion());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -162,12 +169,14 @@ public class PruebaListActivity extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
+            public final View mView;
             final TextView mNombre;
             final TextView mDireccion;
-
+            public HuertosResponse mItem;
 
             ViewHolder(View view) {
                 super(view);
+                mView = view;
                 mNombre = view.findViewById(R.id.nombre);
                 mDireccion = view.findViewById(R.id.direccion);
             }

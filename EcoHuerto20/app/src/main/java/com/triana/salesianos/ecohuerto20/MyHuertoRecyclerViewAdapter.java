@@ -67,12 +67,12 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
             }
         });
 
-        holder.mBorrar.setOnClickListener(new View.OnClickListener() {
+        /*holder.mBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.borrarHuerto(mValues.get(position).getId());
             }
-        });
+        });*/
     }
 
     @Override
@@ -85,7 +85,7 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
         public final TextView mNombre;
         public final TextView mDireccion;
         public final ImageView mFotoHuerto;
-        public final TextView mBorrar;
+        //public final TextView mBorrar;
         public HuertosResponse mItem;
 
         public ViewHolder(View view) {
@@ -94,7 +94,7 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
             mNombre = view.findViewById(R.id.nombre);
             mDireccion = view.findViewById(R.id.direccion);
             mFotoHuerto = view.findViewById(R.id.fotoHuerto);
-            mBorrar = view.findViewById(R.id.btnBorrar);
+            //mBorrar = view.findViewById(R.id.btnBorrar);
         }
     }
 }

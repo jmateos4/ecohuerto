@@ -4,9 +4,9 @@ public class Plantacion {
 
     private String nombre;
     private String tipo;
-    private String riegoAutomatico;
+    private Boolean riegoAutomatico;
 
-    public Plantacion(String nombre, String tipo, String riegoAutomatico) {
+    public Plantacion(String nombre, String tipo, Boolean riegoAutomatico) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.riegoAutomatico = riegoAutomatico;
@@ -30,13 +30,12 @@ public class Plantacion {
         return this;
     }
 
-    public String getRiegoAutomatico() {
+    public Boolean getRiegoAutomatico() {
         return riegoAutomatico;
     }
 
-    public Plantacion setRiegoAutomatico(String riegoAutomatico) {
+    public void setRiegoAutomatico(Boolean riegoAutomatico) {
         this.riegoAutomatico = riegoAutomatico;
-        return this;
     }
 
     @Override
