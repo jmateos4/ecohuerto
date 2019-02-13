@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -50,7 +49,6 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
         holder.mNombre.setText(mValues.get(position).getNombre());
         holder.mDireccion.setText(mValues.get(position).getDireccion());
 
-
         Glide
                 .with(ctx)
                 .load(mValues.get(position).getFoto())
@@ -62,7 +60,12 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
                     }
                 });
 
-        //holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         holder.mBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +85,7 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
         public final TextView mNombre;
         public final TextView mDireccion;
         public final ImageView mFotoHuerto;
-        public final Button mBorrar;
+        public final TextView mBorrar;
         public HuertosResponse mItem;
 
         public ViewHolder(View view) {

@@ -20,8 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--<include layout="@layout/content_huerto" />-->
-    <include layout="@layout/activity_prueba_list" />
+    <include layout="@layout/content_huerto" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

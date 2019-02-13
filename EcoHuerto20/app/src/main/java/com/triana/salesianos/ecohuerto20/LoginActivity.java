@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                             UtilToken.setToken(LoginActivity.this, response.body().getToken());
 
                             //startActivity(new Intent(LoginActivity.this, HuertoActivity.class));
-                            startActivity(new Intent(LoginActivity.this, PruebaListActivity.class));
+                            startActivity(new Intent(LoginActivity.this, PruebaDetailActivity.class));
                         }
                     }
 
