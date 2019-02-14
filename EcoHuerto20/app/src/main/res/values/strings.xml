@@ -43,4 +43,8 @@
     <string name="dialog_message">Do you really want to delete?</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_profile_two">Profile2</string>
+    <string name="temperatura">Temperatura</string>
+    <string name="probabilidad_lluvia">Probabilidad de lluvia</string>
+    <string name="humedad">Humedad</string>
+    <string name="viento">Viento</string>
 </resources>

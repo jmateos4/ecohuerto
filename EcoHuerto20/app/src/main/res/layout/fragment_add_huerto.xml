@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".AddHuertoFragment">
+
+    <EditText
+        android:id="@+id/editDimensionesH"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Dimensiones Huerto"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editDireccionH"
+        app:layout_constraintStart_toStartOf="@+id/editDireccionH"
+        app:layout_constraintTop_toBottomOf="@+id/imagenPrev" />
+
+    <Button
+        android:id="@+id/buttonUploadImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="Subir Imagen"
+        app:layout_constraintEnd_toEndOf="@+id/editDireccionH"
+        app:layout_constraintTop_toBottomOf="@+id/editDireccionH" />
+
+    <EditText
+        android:id="@+id/editNombreH"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Nombre Huerto"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editDireccionH"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Direccion Huerto"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editNombreH"
+        app:layout_constraintStart_toStartOf="@+id/editNombreH"
+        app:layout_constraintTop_toBottomOf="@+id/editNombreH" />
+
+    <ImageView
+        android:id="@+id/imagenPrev"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toStartOf="@+id/buttonUploadImg"
+        app:layout_constraintStart_toStartOf="@+id/editDireccionH"
+        app:layout_constraintTop_toBottomOf="@+id/editDireccionH" />
+</android.support.constraint.ConstraintLayout>
