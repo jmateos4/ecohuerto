@@ -11,7 +11,7 @@ public class LoginResponse {
     private String token;
     @SerializedName("user")
     @Expose
-    private User user;
+    private UserResponse user;
 
 
     public LoginResponse() { }
@@ -21,7 +21,7 @@ public class LoginResponse {
      * @param token
      * @param user
      */
-    public LoginResponse(String token, User user) {
+    public LoginResponse(String token, UserResponse user) {
         this.token = token;
         this.user = user;
     }
@@ -34,11 +34,11 @@ public class LoginResponse {
         this.token = token;
     }
 
-    public User getUser() {
+    public UserResponse getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserResponse user) {
         this.user = user;
     }
 

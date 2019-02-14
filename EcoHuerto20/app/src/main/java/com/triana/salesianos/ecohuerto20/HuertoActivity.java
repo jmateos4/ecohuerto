@@ -24,6 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressWarnings("unchecked")
 public class HuertoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HuertoInteractionListener {
 
@@ -98,7 +99,7 @@ public class HuertoActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_profile) {
 
         } else if (id == R.id.nav_share) {
 

@@ -37,9 +37,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.triana.salesianos.ecohuerto20.PruebaListActivity" />
         </activity>
-        <activity
-            android:name=".PruebaDetailFragment"
-            />
     </application>
 
 </manifest>
