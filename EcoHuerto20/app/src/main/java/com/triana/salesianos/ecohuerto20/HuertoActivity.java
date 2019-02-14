@@ -50,6 +50,15 @@ public class HuertoActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
+
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment, new HuertoFragment())
+                .commit();
+
+
+
     }
 
     private void mostrarDialogBorrarUsuario() {
