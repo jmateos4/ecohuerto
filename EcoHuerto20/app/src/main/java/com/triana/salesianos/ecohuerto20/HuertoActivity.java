@@ -95,7 +95,7 @@ public class HuertoActivity extends AppCompatActivity
 
         switch (item.getItemId()) {
             case R.id.nav_camera:
-
+                f = new HuertoFragment();
                 break;
             case R.id.nav_gallery:
 
