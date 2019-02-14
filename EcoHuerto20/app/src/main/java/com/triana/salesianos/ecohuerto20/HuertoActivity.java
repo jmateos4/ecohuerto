@@ -95,22 +95,16 @@ public class HuertoActivity extends AppCompatActivity
         Fragment f = null;
 
         switch (item.getItemId()) {
-            case R.id.nav_camera:
+            case R.id.nav_pluviometro:
                 f = new HuertoFragment();
                 break;
-            case R.id.nav_gallery:
-
-                break;
-            case R.id.nav_slideshow:
+            case R.id.nav_centroMeteorologico:
 
                 break;
             case R.id.nav_profile:
                 f = new UserFragment();
                 break;
-            case R.id.nav_share:
-
-                break;
-            case R.id.nav_send:
+            case R.id.logOut:
 
                 break;
         }
