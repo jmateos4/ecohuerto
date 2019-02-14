@@ -3,6 +3,7 @@ package com.triana.salesianos.ecohuerto20;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
@@ -93,6 +94,8 @@ public class HuertoActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Fragment f = null;
+
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
@@ -106,6 +109,13 @@ public class HuertoActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
+
+        /*if(f != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.contenedor, f)
+                    .commit();
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
