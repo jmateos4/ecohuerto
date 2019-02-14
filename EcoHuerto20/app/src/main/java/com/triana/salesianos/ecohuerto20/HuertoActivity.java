@@ -49,13 +49,7 @@ public class HuertoActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarDialogAddHuerto();
-            }
-        });
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -65,6 +59,14 @@ public class HuertoActivity extends AppCompatActivity
                 .beginTransaction()
                 .add(R.id.fragment, new HuertoFragment())
                 .commit();
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarDialogAddHuerto();
+            }
+        });
     }
 
     private void mostrarDialogBorrarUsuario() {
