@@ -51,14 +51,10 @@ public class HuertoActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
 
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment, new HuertoFragment())
                 .commit();
-
-
-
     }
 
     private void mostrarDialogBorrarUsuario() {
