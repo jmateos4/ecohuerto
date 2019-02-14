@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class UserFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -22,7 +23,6 @@ public class UserFragment extends Fragment {
 
     public UserFragment() { }
 
-    /**
     // TODO: Rename and change types and number of parameters
     public static UserFragment newInstance(String param1, String param2) {
         UserFragment fragment = new UserFragment();
@@ -32,9 +32,7 @@ public class UserFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    */
 
-    /**
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +41,6 @@ public class UserFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,25 +56,21 @@ public class UserFragment extends Fragment {
         }*/
     }
 
-    /**
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.ctx = context;
-        if (context instanceof OnFragmentInteractionListener) {
+        /*if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
-    */
 
-    /**
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        //mListener = null;
     }
-    */
 }
