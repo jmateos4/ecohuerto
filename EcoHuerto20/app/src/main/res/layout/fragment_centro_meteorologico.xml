@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/holo_blue_dark">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -29,36 +27,32 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toTopOf="@id/c_humedad"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/c_temperatura"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/r_viento"
-                        android:layout_width="80dp"
-                        android:layout_height="0dp"
-                        android:gravity="center_vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:text="TextView"
-                        android:textColor="@color/design_default_color_primary_dark"
                         android:textSize="30sp"
                         android:textStyle="italic"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/viento"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/viento"/>
 
                     <TextView
                         android:id="@+id/viento"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginStart="8dp"
                         android:gravity="center_vertical"
                         android:text="@string/viento"
-                        android:textColor="@color/design_default_color_primary_dark"
                         android:textSize="30sp"
                         android:textStyle="italic"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/r_viento"
+                        app:layout_constraintBottom_toTopOf="@+id/r_viento"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,9 +62,8 @@
                     android:id="@+id/c_humedad"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@id/c_lluvia"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/c_lluvia"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/c_viento">
 
@@ -78,9 +71,7 @@
                         android:id="@+id/r_humedad"
                         android:layout_width="80dp"
                         android:layout_height="0dp"
-                        android:gravity="center_vertical"
                         android:text="TextView"
-                        android:textColor="@color/design_default_color_primary_dark"
                         android:textSize="30sp"
                         android:textStyle="italic"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -95,7 +86,6 @@
                         android:layout_marginStart="8dp"
                         android:gravity="center_vertical"
                         android:text="@string/humedad"
-                        android:textColor="@color/design_default_color_primary_dark"
                         android:textSize="30sp"
                         android:textStyle="italic"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -109,19 +99,17 @@
                     android:id="@+id/c_lluvia"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@id/c_temperatura"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/c_humedad">
+                    app:layout_constraintStart_toEndOf="@id/c_humedad"
+                    app:layout_constraintTop_toBottomOf="@id/c_temperatura">
 
                     <TextView
                         android:id="@+id/r_lluvia"
                         android:layout_width="80dp"
                         android:layout_height="0dp"
-                        android:gravity="center_vertical"
                         android:text="TextView"
-                        android:textColor="@color/design_default_color_primary_dark"
-                        android:textSize="30sp"
+                        android:textSize="0sp"
                         android:textStyle="italic"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -131,12 +119,10 @@
                     <TextView
                         android:id="@+id/lluvia"
                         android:layout_width="0dp"
-                        android:layout_height="146dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_height="0dp"
                         android:gravity="center_vertical"
                         android:text="@string/probabilidad_lluvia"
-                        android:textColor="@color/design_default_color_primary_dark"
-                        android:textSize="30sp"
+                        android:textSize="40sp"
                         android:textStyle="italic"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/r_lluvia"
@@ -147,21 +133,19 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/c_temperatura"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/c_lluvia"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/c_lluvia">
+                    app:layout_constraintStart_toEndOf="@id/c_viento"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/r_temperatura"
                         android:layout_width="80dp"
                         android:layout_height="0dp"
-                        android:gravity="center_vertical"
                         android:text="TextView"
-                        android:textColor="@color/design_default_color_primary_dark"
-                        android:textSize="30sp"
+                        android:textSize="40sp"
                         android:textStyle="italic"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -173,10 +157,8 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="8dp"
-                        android:gravity="center_vertical"
                         android:text="@string/temperatura"
-                        android:textColor="@color/design_default_color_primary_dark"
-                        android:textSize="30sp"
+                        android:textSize="40sp"
                         android:textStyle="italic"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/r_temperatura"
