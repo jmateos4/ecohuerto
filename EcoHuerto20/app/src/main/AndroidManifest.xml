@@ -25,11 +25,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RegistroActivity" />
         <activity
-            android:name=".PruebaListActivity"
-            android:label="@string/title_prueba_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".PruebaDetailActivity"
+            android:name=".HuertoDetailActivity"
             android:label="@string/title_prueba_detail"
             android:parentActivityName=".PruebaListActivity"
             android:theme="@style/AppTheme.NoActionBar">

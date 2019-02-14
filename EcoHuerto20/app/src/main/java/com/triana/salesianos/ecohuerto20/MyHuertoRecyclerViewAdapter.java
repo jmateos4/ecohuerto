@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,8 +66,8 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
             @Override
             public void onClick(View v) {
                 HuertosResponse item = (HuertosResponse) v.getTag();
-                Intent intent = new Intent(ctx, PruebaDetailActivity.class);
-                intent.putExtra(PruebaDetailFragment.ARG_ITEM_ID, item.getId());
+                Intent intent = new Intent(ctx, HuertoDetailActivity.class);
+                intent.putExtra(HuertoDetailFragment.ARG_ITEM_ID, item.getId());
                 ctx.startActivity(intent);
                 Toast.makeText(ctx, "hola", Toast.LENGTH_LONG).show();
             }

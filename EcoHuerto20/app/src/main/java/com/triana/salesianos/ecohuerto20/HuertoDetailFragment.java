@@ -12,14 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.triana.salesianos.ecohuerto20.model.Huerto;
-import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
-import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
@@ -31,10 +28,10 @@ import retrofit2.Callback;
 /**
  * A fragment representing a single Prueba detail screen.
  * This fragment is either contained in a {@link PruebaListActivity}
- * in two-pane mode (on tablets) or a {@link PruebaDetailActivity}
+ * in two-pane mode (on tablets) or a {@link HuertoDetailActivity}
  * on handsets.
  */
-public class PruebaDetailFragment extends Fragment {
+public class HuertoDetailFragment extends Fragment {
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -54,7 +51,7 @@ public class PruebaDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public PruebaDetailFragment() {
+    public HuertoDetailFragment() {
     }
 
     @Override

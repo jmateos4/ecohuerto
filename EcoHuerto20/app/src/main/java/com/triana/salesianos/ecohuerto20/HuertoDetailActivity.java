@@ -14,9 +14,9 @@ import android.view.MenuItem;
  * An activity representing a single Prueba detail screen. This
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a {@link PruebaListActivity}.
+ * in a {@link HuertoFragment}.
  */
-public class PruebaDetailActivity extends AppCompatActivity {
+public class HuertoDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,9 @@ public class PruebaDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(PruebaDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(PruebaDetailFragment.ARG_ITEM_ID));
-            PruebaDetailFragment fragment = new PruebaDetailFragment();
+            arguments.putString(HuertoDetailFragment.ARG_ITEM_ID,
+                    getIntent().getStringExtra(HuertoDetailFragment.ARG_ITEM_ID));
+            HuertoDetailFragment fragment = new HuertoDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.prueba_detail_container, fragment)
@@ -73,7 +73,7 @@ public class PruebaDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, PruebaListActivity.class));
+            navigateUpTo(new Intent(this, HuertoFragment.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
