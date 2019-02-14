@@ -2,6 +2,7 @@ package com.triana.salesianos.ecohuerto20;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
@@ -47,6 +49,14 @@ public class HuertoActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarDialogAddHuerto();
+            }
+        });
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
@@ -62,6 +72,10 @@ public class HuertoActivity extends AppCompatActivity
         dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
     }
 
+    private void mostrarDialogAddHuerto() {
+        DialogFragment dialog = AddHuertoFragment.newInstance(1);
+        dialog.show(getSupportFragmentManager(), "AddHuertoFragment");
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
