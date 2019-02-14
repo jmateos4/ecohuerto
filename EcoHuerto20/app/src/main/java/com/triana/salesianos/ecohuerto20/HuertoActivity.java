@@ -49,6 +49,7 @@ public class HuertoActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
     }
 
     private void mostrarDialogBorrarUsuario() {
@@ -96,17 +97,13 @@ public class HuertoActivity extends AppCompatActivity
 
         Fragment f = null;
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_pluviometro) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_centroMeteorologico) {
 
         } else if (id == R.id.nav_profile) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.logOut) {
 
         }
 
