@@ -9,7 +9,7 @@ public class Espacio {
 
     @SerializedName("plantaciones")
     @Expose
-    private List<Object> plantaciones = null;
+    private List<String> plantaciones = null;
     @SerializedName("dimensiones")
     @Expose
     private String dimensiones;
@@ -26,17 +26,17 @@ public class Espacio {
      * @param plantaciones
      * @param dimensiones
      */
-    public Espacio(List<Object> plantaciones, String dimensiones) {
+    public Espacio(List<String> plantaciones, String dimensiones) {
         super();
         this.plantaciones = plantaciones;
         this.dimensiones = dimensiones;
     }
 
-    public List<Object> getPlantaciones() {
+    public List<String> getPlantaciones() {
         return plantaciones;
     }
 
-    public void setPlantaciones(List<Object> plantaciones) {
+    public void setPlantaciones(List<String> plantaciones) {
         this.plantaciones = plantaciones;
     }
 
