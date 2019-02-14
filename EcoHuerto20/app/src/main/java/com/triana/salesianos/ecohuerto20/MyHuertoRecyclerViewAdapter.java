@@ -69,7 +69,6 @@ public class MyHuertoRecyclerViewAdapter extends RecyclerView.Adapter<MyHuertoRe
                 Intent intent = new Intent(ctx, HuertoDetailActivity.class);
                 intent.putExtra(HuertoDetailFragment.ARG_ITEM_ID, item.getId());
                 ctx.startActivity(intent);
-                Toast.makeText(ctx, "hola", Toast.LENGTH_LONG).show();
             }
         });
 

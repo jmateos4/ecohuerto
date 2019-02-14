@@ -92,27 +92,35 @@ public class HuertoActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
         Fragment f = null;
 
-        if (id == R.id.nav_pluviometro) {
+        switch (item.getItemId()) {
+            case R.id.nav_camera:
+                f = new HuertoFragment();
+                break;
+            case R.id.nav_gallery:
 
-        } else if (id == R.id.nav_centroMeteorologico) {
+                break;
+            case R.id.nav_slideshow:
 
-        } else if (id == R.id.nav_profile) {
+                break;
+            case R.id.nav_profile:
+                f = new UserFragment();
+                break;
+            case R.id.nav_share:
 
-        } else if (id == R.id.logOut) {
+                break;
+            case R.id.nav_send:
 
+                break;
         }
 
-        /*if(f != null) {
+        if(f != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.contenedor, f)
+                    .replace(R.id.fragment, f)
                     .commit();
-        }*/
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.triana.salesianos.ecohuerto20.model.Huerto;
+import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
@@ -27,7 +27,7 @@ import retrofit2.Callback;
 
 /**
  * A fragment representing a single Prueba detail screen.
- * This fragment is either contained in a {@link PruebaListActivity}
+ * This fragment is either contained in a {@link HuertoFragment}
  * in two-pane mode (on tablets) or a {@link HuertoDetailActivity}
  * on handsets.
  */
@@ -41,7 +41,7 @@ public class HuertoDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private Huerto mItem;
+    private HuertosResponse mItem;
 
     private HuertoService service = ServiceGenerator.createService(HuertoService.class,
             ServiceGenerator.jwtToken, TipoAutenticacion.JWT);
@@ -63,7 +63,7 @@ public class HuertoDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.prueba_detail, container, false);
+        final View rootView = inflater.inflate(R.layout.huerto_detail, container, false);
 
         // Show the dummy content as text in a TextView.
 
@@ -79,12 +79,12 @@ public class HuertoDetailFragment extends Fragment {
             final CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
 
 
-            Call<Huerto> call = service.oneHuerto(idHuerto);
-            call.enqueue(new Callback<Huerto>() {
+            Call<HuertosResponse> call = service.oneHuerto(idHuerto);
+            call.enqueue(new Callback<HuertosResponse>() {
                 @Override
-                public void onResponse(Call<Huerto> call, Response<Huerto> response) {
+                public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {
                     if (response.isSuccessful()) {
-                        mItem = new Huerto(idHuerto, response.body().getNombre(), response.body().getDireccion(), response.body().getFoto(), response.body().getEspacio(), response.body().getUser(), response.body().getCreatedAt(), response.body().getUpdatedAt());
+                        mItem = new HuertosResponse(idHuerto, response.body().getNombre(), response.body().getDireccion(), response.body().getFoto(), response.body().getEspacio(), response.body().getUser(), response.body().getCreatedAt(), response.body().getUpdatedAt());
                         appBarLayout.setTitle(mItem.getNombre());
                         //appBarLayout.setBackground(LoadImageFromWebOperations(mItem.getFoto()));
                         Glide
@@ -107,7 +107,7 @@ public class HuertoDetailFragment extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<Huerto> call, Throwable t) {
+                public void onFailure(Call<HuertosResponse> call, Throwable t) {
                     // Toast
                     Log.i("onFailure", "error en retrofit");
                 }
