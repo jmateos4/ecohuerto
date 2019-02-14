@@ -2,7 +2,6 @@ package com.triana.salesianos.ecohuerto20.retrofit.services;
 
 import com.triana.salesianos.ecohuerto20.model.LoginResponse;
 import com.triana.salesianos.ecohuerto20.model.Registro;
-import com.triana.salesianos.ecohuerto20.model.RegistroResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -23,7 +22,7 @@ public interface LoginService {
     //                               @Body Registro registro);
 
     @POST("/users")
-    Call<RegistroResponse> doRegister(@Body Registro registro);
+    Call<LoginResponse> doRegister(@Body Registro registro);
 
 
 

@@ -6,19 +6,11 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.triana.salesianos.ecohuerto20.model.Huerto;
-import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
-import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
-import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 
 
 public class BorrarUsuarioFragment extends DialogFragment {
@@ -27,7 +19,7 @@ public class BorrarUsuarioFragment extends DialogFragment {
     // TODO: Rename and change types of parameters
     private int idUsuarioBorrar;
     private TextView tvNombre;
-    private Huerto huerto;
+    private HuertosResponse huerto;
 
     public BorrarUsuarioFragment() {
         // Required empty public constructor
