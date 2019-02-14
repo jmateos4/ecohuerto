@@ -10,8 +10,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.triana.salesianos.ecohuerto20.model.LoginResponse;
 import com.triana.salesianos.ecohuerto20.model.Registro;
-import com.triana.salesianos.ecohuerto20.model.RegistroResponse;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.services.LoginService;
 
@@ -68,11 +68,11 @@ public class RegistroActivity extends AppCompatActivity {
 
                     LoginService service = ServiceGenerator.createService(LoginService.class);
 
-                    Call<RegistroResponse> loginReponseCall = service.doRegister(registro);
+                    Call<LoginResponse> loginReponseCall = service.doRegister(registro);
 
-                    loginReponseCall.enqueue(new Callback<RegistroResponse>() {
+                    loginReponseCall.enqueue(new Callback<LoginResponse>() {
                         @Override
-                        public void onResponse(Call<RegistroResponse> call, Response<RegistroResponse> response) {
+                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                             if (response.code() == 201) {
                                 //ServiceGenerator.jwtToken = response.body().getToken();
                                 UtilToken.setToken(RegistroActivity.this, response.body().getToken());
@@ -87,7 +87,7 @@ public class RegistroActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<RegistroResponse> call, Throwable t) {
+                        public void onFailure(Call<LoginResponse> call, Throwable t) {
                             Log.e("NetworkFailure", t.getMessage());
                             Toast.makeText(RegistroActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
 

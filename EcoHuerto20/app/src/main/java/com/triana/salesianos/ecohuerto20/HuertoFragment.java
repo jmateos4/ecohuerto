@@ -12,14 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
-import com.triana.salesianos.ecohuerto20.model.Huerto;
 import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
