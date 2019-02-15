@@ -90,10 +90,10 @@ public class AddHuertoFragment extends DialogFragment {
         }
     }
 
-    public static AddHuertoFragment newInstance(int idUsuario) {
+    public static AddHuertoFragment newInstance(String idUsuario) {
         AddHuertoFragment fragment = new AddHuertoFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_ID_USUARIO, idUsuario);
+        args.putString(ARG_ID_USUARIO, idUsuario);
         fragment.setArguments(args);
         return fragment;
     }
