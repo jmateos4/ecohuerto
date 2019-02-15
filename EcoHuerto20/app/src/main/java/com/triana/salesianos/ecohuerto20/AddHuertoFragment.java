@@ -24,6 +24,7 @@ import com.triana.salesianos.ecohuerto20.model.HuertoDTO;
 import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.model.LoginResponse;
 import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
+import com.triana.salesianos.ecohuerto20.model.UserResponse;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
@@ -51,6 +52,7 @@ public class AddHuertoFragment extends DialogFragment {
     private ImageView imgCargada;
     private Button btnUpload ;
     private Uri uriSelected;
+    private UserResponse userL;
     Context ctx;
 
 
@@ -110,13 +112,38 @@ public class AddHuertoFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         HuertoService service = ServiceGenerator.createService(HuertoService.class,
                                 UtilToken.getToken(ctx), TipoAutenticacion.JWT);
-                        Espacio espacio = new Espacio(null, etDimensiones.getText().toString());
-                        HuertoDTO huerto = new HuertoDTO (etNombre.getText().toString(),etDireccion.getText().toString(), espacio);
 
-                        Call <HuertosResponse> call = service.addHuerto(huerto);
-                        call.enqueue(new Callback<HuertosResponse>() {
+                        LoginService serviceUser = ServiceGenerator.createService(LoginService.class,
+                                UtilToken.getToken(ctx), TipoAutenticacion.JWT);
+
+                        Call<UserResponse> call = serviceUser.oneUser(UtilToken.getIdUser(ctx));
+                        call.enqueue(new Callback<UserResponse>() {
                             @Override
-                            public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {
+                            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                                if (response.isSuccessful()) {
+                                    userL = response.body();
+                                    //recyclerView.setAdapter(new MyHuertoRecyclerViewAdapter(ctx, response.body().getRows(), mListener));
+                                } else {
+                                    // Toast
+                                }
+
+                            }
+                            @Override
+                            public void onFailure(Call<UserResponse> call, Throwable t) {
+                                // Toast
+                                Log.i("onFailure", "error en retrofit");
+                            }
+                        });
+
+
+                        Espacio espacio = new Espacio(null, etDimensiones.getText().toString());
+
+                        HuertoDTO huerto = new HuertoDTO (etNombre.getText().toString(),etDireccion.getText().toString(), imgCargada.toString() ,espacio, userL.getId());
+
+                        Call <HuertosResponse> calla = service.addHuerto(huerto);
+                        calla.enqueue(new Callback<HuertosResponse>() {
+                            @Override
+                            public void onResponse(Call<HuertosResponse> calla, Response<HuertosResponse> response) {
                                 if (response.isSuccessful()) {
                                     Toast.makeText(ctx, "Response Successful", Toast.LENGTH_LONG).show();
                                 } else {
@@ -127,7 +154,7 @@ public class AddHuertoFragment extends DialogFragment {
                             }
 
                             @Override
-                            public void onFailure(Call<HuertosResponse> call, Throwable t) {
+                            public void onFailure(Call<HuertosResponse> calla, Throwable t) {
                                 // Toast
                                 Log.i("onFailure", "error en retrofit");
                             }
