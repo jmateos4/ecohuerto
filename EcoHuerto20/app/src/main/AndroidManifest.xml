@@ -20,11 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RegistroActivity"
+            android:theme="@style/AppTheme.NoActionBarLogin">
+        </activity>
         <activity
             android:name=".HuertoActivity"
             android:label="@string/title_activity_huerto"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegistroActivity" />
         <activity
             android:name=".HuertoDetailActivity"
             android:label="@string/title_prueba_detail"
