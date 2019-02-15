@@ -1,13 +1,22 @@
 package com.triana.salesianos.ecohuerto20.retrofit.services;
 
+<<<<<<< HEAD
+import com.triana.salesianos.ecohuerto20.model.Espacio;
+=======
 import com.triana.salesianos.ecohuerto20.model.HuertoDTO;
+>>>>>>> 23a3e54df08b61c5ac968a318c8c18df8789a82f
 import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.model.LoginResponse;
 import com.triana.salesianos.ecohuerto20.model.PlantacionResponse;
 import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 
+<<<<<<< HEAD
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+=======
+import java.util.List;
+
+>>>>>>> 4d36cf00169031f4c07945933896c38f2f2d0599
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -28,11 +37,16 @@ public interface HuertoService {
     @DELETE("huertos/{id}")
     Call borrarHuerto(@Path("id") String id);
 
+<<<<<<< HEAD
+    @GET("plantaciones/huerto/{id_huerto}")
+    Call <List<PlantacionResponse>> listPlantacion(@Path("id_huerto") String id_huerto);
+=======
     @POST("huertos")
     Call<HuertosResponse> addHuerto(@Body HuertoDTO huerto);
 
     @GET("plantaciones/{id}")
     Call<PlantacionResponse> onePlantacion(@Path("id") String id);
+<<<<<<< HEAD
 
     @Multipart
     @POST("/huertos")
@@ -43,4 +57,8 @@ public interface HuertoService {
                                       @Part("espacio") RequestBody espacio,
                                       @Part("user") RequestBody user);
 
+=======
+>>>>>>> 23a3e54df08b61c5ac968a318c8c18df8789a82f
+    
+>>>>>>> 4d36cf00169031f4c07945933896c38f2f2d0599
 }

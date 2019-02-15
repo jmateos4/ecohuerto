@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Espacio {
+public class Espacio<T> {
 
     @SerializedName("plantaciones")
     @Expose
-    private List<String> plantaciones = null;
+    private List<T> plantaciones = null;
     @SerializedName("dimensiones")
     @Expose
     private String dimensiones;
@@ -26,17 +26,17 @@ public class Espacio {
      * @param plantaciones
      * @param dimensiones
      */
-    public Espacio(List<String> plantaciones, String dimensiones) {
+    public Espacio(List<T> plantaciones, String dimensiones) {
         super();
         this.plantaciones = plantaciones;
         this.dimensiones = dimensiones;
     }
 
-    public List<String> getPlantaciones() {
+    public List<T> getPlantaciones() {
         return plantaciones;
     }
 
-    public void setPlantaciones(List<String> plantaciones) {
+    public void setPlantaciones(List<T> plantaciones) {
         this.plantaciones = plantaciones;
     }
 

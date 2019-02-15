@@ -10,13 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import com.triana.salesianos.ecohuerto20.interfaces.PlantacionInteractionListener;
+
 /**
  * An activity representing a single Prueba detail screen. This
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link HuertoFragment}.
  */
-public class HuertoDetailActivity extends AppCompatActivity {
+public class HuertoDetailActivity extends AppCompatActivity implements PlantacionInteractionListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class HuertoDetailActivity extends AppCompatActivity {
         //
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
-            // using a fragment transaction.
+            // using a fragment transacHuertoDetailFragmenttion.
             Bundle arguments = new Bundle();
             arguments.putString(HuertoDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(HuertoDetailFragment.ARG_ITEM_ID));
@@ -60,6 +63,14 @@ public class HuertoDetailActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.prueba_detail_container, fragment)
                     .commit();
+
+//            Bundle arguments1 = new Bundle();
+//            arguments1.putString(PlantacionFragment.ARG_ITEM_ID, getIntent().getStringExtra(PlantacionFragment.ARG_ITEM_ID));
+//            PlantacionFragment fragment1 = new PlantacionFragment();
+//            fragment1.setArguments(arguments1);
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.fragment2, fragment1)
+//                    .commit();
         }
     }
 
@@ -77,5 +88,10 @@ public class HuertoDetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClickPlantacion(String nombre) {
+
     }
 }
