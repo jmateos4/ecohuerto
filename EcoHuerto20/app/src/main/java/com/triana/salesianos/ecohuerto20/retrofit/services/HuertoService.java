@@ -6,6 +6,8 @@ import com.triana.salesianos.ecohuerto20.model.LoginResponse;
 import com.triana.salesianos.ecohuerto20.model.PlantacionResponse;
 import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
