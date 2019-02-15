@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@color/design_default_color_primary"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_logo4"
+        app:srcCompat="@drawable/ic_logo45"
         tools:ignore="VectorDrawableCompat" />
 
     <android.support.v7.widget.CardView
@@ -59,6 +59,7 @@
                 android:ems="10"
                 android:hint="@string/hint_last_name"
                 android:inputType="textPersonName"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/etPhone"
                 app:layout_constraintEnd_toEndOf="@+id/etName"
@@ -72,6 +73,7 @@
                 android:ems="10"
                 android:hint="@string/hint_phone"
                 android:inputType="phone"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/etEmail"
                 app:layout_constraintEnd_toEndOf="@+id/etLastName"
@@ -86,6 +88,7 @@
                 android:ems="10"
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/etPassword"
                 app:layout_constraintEnd_toEndOf="@+id/etPhone"
@@ -99,6 +102,7 @@
                 android:ems="10"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/etRepeatPassword"
                 app:layout_constraintEnd_toEndOf="@+id/etEmail"
@@ -113,6 +117,7 @@
                 android:ems="10"
                 android:hint="@string/hint_repeat_password"
                 android:inputType="textPassword"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/cbTerms"
                 app:layout_constraintEnd_toEndOf="@+id/etPassword"

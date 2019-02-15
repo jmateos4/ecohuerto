@@ -1,8 +1,11 @@
 package com.triana.salesianos.ecohuerto20.retrofit.services;
 
+<<<<<<< HEAD
 
 import com.triana.salesianos.ecohuerto20.model.Espacio;
 
+=======
+>>>>>>> 946333e1c2918ee48c5fecaf81119c390c787457
 import com.triana.salesianos.ecohuerto20.model.HuertoDTO;
 import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.model.PlantacionResponse;
