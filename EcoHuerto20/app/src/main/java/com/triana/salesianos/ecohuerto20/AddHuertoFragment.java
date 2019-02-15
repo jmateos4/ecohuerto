@@ -104,7 +104,7 @@ public class AddHuertoFragment extends DialogFragment {
                                     userL = response.body();
                                     userL.getId();
                                     espacio = new Espacio(null, etDimensiones.getText().toString());
-                                    huerto = new HuertoDTO (etNombre.getText().toString(),etDireccion.getText().toString(), imgCargada.toString() ,espacio, userL.getId());
+                                    huerto = new HuertoDTO (etNombre.getText().toString(),etDireccion.getText().toString() ,espacio, userL.getId());
                                     Call <HuertosResponse> calla = service.addHuerto(huerto);
                                     calla.enqueue(new Callback<HuertosResponse>() {
                                         @Override

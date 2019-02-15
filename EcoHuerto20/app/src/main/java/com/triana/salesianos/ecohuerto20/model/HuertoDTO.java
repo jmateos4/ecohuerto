@@ -1,5 +1,7 @@
 package com.triana.salesianos.ecohuerto20.model;
 
+import android.media.Image;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -38,30 +40,38 @@ public class HuertoDTO {
     this.espacio = espacio;
   }
 
-  public HuertoDTO(String nombre, String direccion, String foto, Espacio espacio) {
-    this.nombre = nombre;
-    this.direccion = direccion;
-    this.foto = foto;
-    this.espacio = espacio;
-  }
 
-  public HuertoDTO(String id, String nombre, String direccion, String foto, Espacio espacio) {
+  public HuertoDTO(String id, String nombre, String direccion, Espacio espacio) {
     this.id = id;
     this.nombre = nombre;
     this.direccion = direccion;
-    this.foto = foto;
     this.espacio = espacio;
   }
 
-  public HuertoDTO(String nombre, String direccion, String foto, Espacio espacio, String user) {
+  public HuertoDTO(String nombre, String direccion, Espacio espacio, String user) {
     this.nombre = nombre;
     this.direccion = direccion;
-    this.foto = foto;
     this.espacio = espacio;
     this.user = user;
   }
 
-  public String getId() {
+    public HuertoDTO(String nombre, String direccion, String  foto, Espacio espacio, String user) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.foto = foto;
+        this.espacio = espacio;
+        this.user = user;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getId() {
     return id;
   }
 
@@ -83,14 +93,6 @@ public class HuertoDTO {
 
   public void setDireccion(String direccion) {
     this.direccion = direccion;
-  }
-
-  public String getFoto() {
-    return foto;
-  }
-
-  public void setFoto(String foto) {
-    this.foto = foto;
   }
 
   public Espacio getEspacio() {

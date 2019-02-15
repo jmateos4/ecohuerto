@@ -37,6 +37,7 @@ public interface HuertoService {
     @GET("plantaciones/huerto/{id_huerto}")
     Call <List<PlantacionResponse>> listPlantacion(@Path("id_huerto") String id_huerto);
 
+    //Necesita Multipart
     @POST("huertos")
     Call<HuertosResponse> addHuerto(@Body HuertoDTO huerto);
 
@@ -45,7 +46,7 @@ public interface HuertoService {
 
 
     @Multipart
-    @POST("/huertos")
+    @POST("huertos")
     Call<HuertosResponse> registerImg(@Part MultipartBody.Part foto,
                                       @Part("nombre") RequestBody nombre,
                                       @Part("direcion") RequestBody direccion,
