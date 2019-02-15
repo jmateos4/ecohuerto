@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
@@ -80,7 +81,7 @@ public class UserFragment extends Fragment {
                     name.setText(response.body().getName());
                     //recyclerView.setAdapter(new MyHuertoRecyclerViewAdapter(ctx, response.body().getRows(), mListener));
                 } else {
-                    // Toast
+                    Toast.makeText(ctx, "Error en la petición.", Toast.LENGTH_LONG).show();
                 }
 
 
