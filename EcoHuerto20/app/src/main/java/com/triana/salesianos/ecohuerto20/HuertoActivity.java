@@ -122,7 +122,7 @@ public class HuertoActivity extends AppCompatActivity
                 fab.show();
                 break;
             case R.id.nav_pluviometro:
-                
+
                 fab.hide();
                 break;
             case R.id.nav_centroMeteorologico:
