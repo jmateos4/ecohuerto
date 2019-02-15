@@ -28,10 +28,10 @@
             android:name=".HuertoDetailActivity"
             android:label="@string/title_prueba_detail"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".PruebaListActivity">
+            android:parentActivityName=".HuertoActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.triana.salesianos.ecohuerto20.PruebaListActivity" />
+                android:value="com.triana.salesianos.ecohuerto20.HuertoActivity" />
         </activity>
     </application>
 
