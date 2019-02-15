@@ -27,4 +27,15 @@
         app:layout_constraintStart_toStartOf="@+id/localizacion_detail"
         app:layout_constraintTop_toBottomOf="@+id/localizacion_detail" />
 
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.triana.salesianos.ecohuerto20.PlantacionFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dimension_detail" />
+
 </android.support.constraint.ConstraintLayout>
