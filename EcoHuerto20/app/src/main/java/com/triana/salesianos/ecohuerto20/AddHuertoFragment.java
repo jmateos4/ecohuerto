@@ -86,6 +86,7 @@ public class AddHuertoFragment extends DialogFragment {
                         .load(uri)
                         .into(imgCargada);
                 uriSelected = uri;
+
             }
         }
     }
