@@ -4,11 +4,25 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
+import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
+import com.triana.salesianos.ecohuerto20.model.UserResponse;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
+import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
+import com.triana.salesianos.ecohuerto20.retrofit.services.LoginService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserFragment extends Fragment {
 
@@ -48,10 +62,36 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_user, container, false);
-        TextView name = v.findViewById(R.id.user_name);
-        ImageView avatar = v.findViewById(R.id.user_avatar);
+        final TextView name = v.findViewById(R.id.user_name);
+        final ImageView avatar = v.findViewById(R.id.user_avatar);
+
+        LoginService service = ServiceGenerator.createService(LoginService.class,
+                UtilToken.getToken(ctx), TipoAutenticacion.JWT);
+
+        Call<UserResponse> call = service.oneUser(UtilToken.getIdUser(ctx));
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    Glide
+                            .with(ctx)
+                            .load(response.body().getPicture())
+                            .into(avatar);
+                    name.setText(response.body().getName());
+                    //recyclerView.setAdapter(new MyHuertoRecyclerViewAdapter(ctx, response.body().getRows(), mListener));
+                } else {
+                    // Toast
+                }
 
 
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                // Toast
+                Log.i("onFailure", "error en retrofit");
+            }
+        });
 
         return v;
     }
