@@ -2,6 +2,7 @@ package com.triana.salesianos.ecohuerto20;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,10 +15,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
+import com.triana.salesianos.ecohuerto20.model.Espacio;
+import com.triana.salesianos.ecohuerto20.model.HuertoDTO;
+import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.model.LoginResponse;
+import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
+import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
 import com.triana.salesianos.ecohuerto20.retrofit.services.LoginService;
 
 import java.io.BufferedInputStream;
@@ -42,6 +51,7 @@ public class AddHuertoFragment extends DialogFragment {
     private ImageView imgCargada;
     private Button btnUpload ;
     private Uri uriSelected;
+    Context ctx;
 
 
     public AddHuertoFragment() {
@@ -98,7 +108,32 @@ public class AddHuertoFragment extends DialogFragment {
         builder.setMessage("")
                 .setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //Metodo Guardar imagen btn_upload on click listener
+                        HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                                UtilToken.getToken(ctx), TipoAutenticacion.JWT);
+                        Espacio espacio = new Espacio(null, etDimensiones.getText().toString());
+                        HuertoDTO huerto = new HuertoDTO (etNombre.getText().toString(),etDireccion.getText().toString(), espacio);
+
+                        Call <HuertosResponse> call = service.addHuerto(huerto);
+                        call.enqueue(new Callback<HuertosResponse>() {
+                            @Override
+                            public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(ctx, "Response Successful", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(ctx, "Response False", Toast.LENGTH_LONG).show();
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<HuertosResponse> call, Throwable t) {
+                                // Toast
+                                Log.i("onFailure", "error en retrofit");
+                            }
+                        });
+
+
                     }
                 })
                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -117,6 +152,8 @@ public class AddHuertoFragment extends DialogFragment {
         etDimensiones = v.findViewById(R.id.editDimensionesH);
         imgCargada = v.findViewById(R.id.imagenPrev);
         btnUpload = v.findViewById(R.id.buttonUploadImg);
+
+
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,4 +227,16 @@ public class AddHuertoFragment extends DialogFragment {
         // Create the AlertDialog object and return it
         return builder.create();
     }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.ctx = context;
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
 }
