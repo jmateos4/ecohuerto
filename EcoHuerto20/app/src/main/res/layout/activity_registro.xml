@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/design_default_color_primary"
-    tools:context=".MainActivity">
+    android:background="#064789">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -130,7 +129,7 @@
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_marginBottom="8dp"
-                android:backgroundTint="#63e289"
+                android:backgroundTint="#49A010"
                 android:text="@string/button_register_user"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
@@ -147,7 +146,7 @@
                 android:checked="false"
                 android:text="@string/checkbox_accept_terms"
                 android:textAlignment="textStart"
-                android:textColorHint="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/btnRegister"
                 app:layout_constraintEnd_toEndOf="@+id/etRepeatPassword"
