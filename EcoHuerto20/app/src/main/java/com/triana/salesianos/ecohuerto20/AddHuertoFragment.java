@@ -16,6 +16,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.triana.salesianos.ecohuerto20.model.LoginResponse;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
+import com.triana.salesianos.ecohuerto20.retrofit.services.LoginService;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class AddHuertoFragment extends DialogFragment {
@@ -25,6 +41,7 @@ public class AddHuertoFragment extends DialogFragment {
     private EditText etNombre, etDireccion, etDimensiones;
     private ImageView imgCargada;
     private Button btnUpload ;
+    private Uri uriSelected;
 
 
     public AddHuertoFragment() {
@@ -53,6 +70,7 @@ public class AddHuertoFragment extends DialogFragment {
                         .with(this)
                         .load(uri)
                         .into(imgCargada);
+                uriSelected = uri;
             }
         }
     }
@@ -103,6 +121,63 @@ public class AddHuertoFragment extends DialogFragment {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (uriSelected != null) {
+
+                    LoginService service = ServiceGenerator.createService(LoginService.class);
+
+                    try {
+                        InputStream inputStream = getActivity().getContentResolver().openInputStream(uriSelected);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                        int cantBytes;
+                        byte[] buffer = new byte[1024*4];
+
+                        while ((cantBytes = bufferedInputStream.read(buffer,0,1024*4)) != -1) {
+                            baos.write(buffer,0,cantBytes);
+                        }
+
+
+                        RequestBody requestFile =
+                                RequestBody.create(
+                                        MediaType.parse(getActivity().getContentResolver().getType(uriSelected)), baos.toByteArray());
+
+
+                        MultipartBody.Part body =
+                                MultipartBody.Part.createFormData("avatar", "avatar", requestFile);
+
+
+                        RequestBody email = RequestBody.create(MultipartBody.FORM, "a@a.com");
+                        RequestBody password = RequestBody.create(MultipartBody.FORM, "12345678");
+
+                        Call<LoginResponse> callRegister = service.doRegister(body, email, password);
+
+                        callRegister.enqueue(new Callback<LoginResponse>() {
+                            @Override
+                            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                                if (response.isSuccessful()) {
+                                    Log.d("Uploaded", "Éxito");
+                                    Log.d("Uploaded", response.body().toString());
+                                } else {
+                                    Log.e("Upload error", response.errorBody().toString());
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                                Log.e("Upload error", t.getMessage());
+                            }
+                        });
+
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
                 performFileSearch();
             }
         });
