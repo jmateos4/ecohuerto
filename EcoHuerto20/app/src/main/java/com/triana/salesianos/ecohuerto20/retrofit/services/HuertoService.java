@@ -1,6 +1,7 @@
 package com.triana.salesianos.ecohuerto20.retrofit.services;
 
 import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
+import com.triana.salesianos.ecohuerto20.model.PlantacionResponse;
 import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 
 import retrofit2.Call;
@@ -18,4 +19,8 @@ public interface HuertoService {
 
     @DELETE("huertos/{id}")
     Call borrarHuerto(@Path("id") String id);
+
+    @GET("plantaciones/{id}")
+    Call<PlantacionResponse> onePlantacion(@Path("id") String id);
+    
 }
