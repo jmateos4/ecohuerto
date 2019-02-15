@@ -120,7 +120,7 @@ public class HuertoActivity extends AppCompatActivity
                 f = new HuertoFragment();
                 break;
             case R.id.nav_centroMeteorologico:
-
+                f = new CentroMeteorologicoFragment();
                 break;
             case R.id.nav_profile:
                 f = new UserFragment();
