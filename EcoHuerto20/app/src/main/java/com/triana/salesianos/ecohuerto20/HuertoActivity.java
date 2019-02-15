@@ -76,7 +76,7 @@ public class HuertoActivity extends AppCompatActivity
     }
 
     private void mostrarDialogAddHuerto() {
-        DialogFragment dialog = AddHuertoFragment.newInstance(1);
+        DialogFragment dialog = AddHuertoFragment.newInstance(Integer.parseInt(UtilToken.getIdUser(HuertoActivity.this)));
         dialog.show(getSupportFragmentManager(), "AddHuertoFragment");
     }
     @Override
