@@ -5,9 +5,9 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp"
+    android:layout_marginBottom="1dp"
     android:orientation="horizontal"
-    app:cardBackgroundColor="#8dc781">
+    app:cardBackgroundColor="#4979a9">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/fotoHuerto"
@@ -33,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="TextView"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
