@@ -68,7 +68,7 @@ public class UserFragment extends Fragment {
         LoginService service = ServiceGenerator.createService(LoginService.class,
                 UtilToken.getToken(ctx), TipoAutenticacion.JWT);
 
-        Call<UserResponse> call = service.oneUser();
+        Call<UserResponse> call = service.oneUser(UtilToken.getIdUser(ctx));
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
