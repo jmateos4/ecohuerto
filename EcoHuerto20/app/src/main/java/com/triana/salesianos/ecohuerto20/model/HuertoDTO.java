@@ -20,6 +20,9 @@ public class HuertoDTO {
   @SerializedName("espacio")
   @Expose
   private Espacio espacio;
+  @SerializedName("user")
+  @Expose
+  private String user;
 
 
   /**
@@ -48,6 +51,14 @@ public class HuertoDTO {
     this.direccion = direccion;
     this.foto = foto;
     this.espacio = espacio;
+  }
+
+  public HuertoDTO(String nombre, String direccion, String foto, Espacio espacio, String user) {
+    this.nombre = nombre;
+    this.direccion = direccion;
+    this.foto = foto;
+    this.espacio = espacio;
+    this.user = user;
   }
 
   public String getId() {
@@ -90,5 +101,11 @@ public class HuertoDTO {
     this.espacio = espacio;
   }
 
+  public String getUser() {
+    return user;
+  }
 
+  public void setUser(String user) {
+    this.user = user;
+  }
 }
