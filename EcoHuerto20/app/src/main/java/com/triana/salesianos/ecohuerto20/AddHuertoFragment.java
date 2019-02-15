@@ -32,6 +32,7 @@ import com.triana.salesianos.ecohuerto20.retrofit.services.LoginService;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,6 +54,8 @@ public class AddHuertoFragment extends DialogFragment {
     private Button btnUpload ;
     private Uri uriSelected;
     private UserResponse userL;
+    private HuertoDTO huerto;
+    private Espacio espacio;
     Context ctx;
 
 
@@ -110,7 +113,7 @@ public class AddHuertoFragment extends DialogFragment {
         builder.setMessage("")
                 .setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                        final HuertoService service = ServiceGenerator.createService(HuertoService.class,
                                 UtilToken.getToken(ctx), TipoAutenticacion.JWT);
 
                         LoginService serviceUser = ServiceGenerator.createService(LoginService.class,
@@ -121,7 +124,30 @@ public class AddHuertoFragment extends DialogFragment {
                             @Override
                             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                                 if (response.isSuccessful()) {
+
                                     userL = response.body();
+                                    userL.getId();
+                                    espacio = new Espacio(null, etDimensiones.getText().toString());
+                                    huerto = new HuertoDTO (etNombre.getText().toString(),etDireccion.getText().toString(), imgCargada.toString() ,espacio, userL.getId());
+                                    Call <HuertosResponse> calla = service.addHuerto(huerto);
+                                    calla.enqueue(new Callback<HuertosResponse>() {
+                                        @Override
+                                        public void onResponse(Call<HuertosResponse> calla, Response<HuertosResponse> response) {
+                                            if (response.isSuccessful()) {
+                                                Toast.makeText(ctx, "Response Successful", Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Toast.makeText(ctx, "Response False", Toast.LENGTH_LONG).show();
+                                            }
+
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<HuertosResponse> calla, Throwable t) {
+                                            // Toast
+                                            Log.i("onFailure", "error en retrofit");
+                                        }
+                                    });
                                     //recyclerView.setAdapter(new MyHuertoRecyclerViewAdapter(ctx, response.body().getRows(), mListener));
                                 } else {
                                     // Toast
@@ -136,29 +162,10 @@ public class AddHuertoFragment extends DialogFragment {
                         });
 
 
-                        Espacio espacio = new Espacio(null, etDimensiones.getText().toString());
-
-                        HuertoDTO huerto = new HuertoDTO (etNombre.getText().toString(),etDireccion.getText().toString(), imgCargada.toString() ,espacio, userL.getId());
-
-                        Call <HuertosResponse> calla = service.addHuerto(huerto);
-                        calla.enqueue(new Callback<HuertosResponse>() {
-                            @Override
-                            public void onResponse(Call<HuertosResponse> calla, Response<HuertosResponse> response) {
-                                if (response.isSuccessful()) {
-                                    Toast.makeText(ctx, "Response Successful", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(ctx, "Response False", Toast.LENGTH_LONG).show();
-                                }
 
 
-                            }
 
-                            @Override
-                            public void onFailure(Call<HuertosResponse> calla, Throwable t) {
-                                // Toast
-                                Log.i("onFailure", "error en retrofit");
-                            }
-                        });
+
 
 
                     }
