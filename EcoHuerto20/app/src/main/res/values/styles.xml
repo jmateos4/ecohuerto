@@ -1,7 +1,7 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">#0e6151</item>
+        <item name="colorPrimary">#49A010</item>
+        <item name="colorPrimaryDark">#3A7F0D</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

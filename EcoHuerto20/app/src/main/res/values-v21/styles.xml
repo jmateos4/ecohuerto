@@ -9,7 +9,9 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">#0e6151</item>
+        <item name="colorPrimary">#49A010</item>
+        <item name="colorPrimaryDark">#3A7F0D</item>
+        <item name="android:statusBarColor">#26532b</item>
     </style>
 
 </resources>

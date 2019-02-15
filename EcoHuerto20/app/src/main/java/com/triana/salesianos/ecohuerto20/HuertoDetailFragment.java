@@ -61,12 +61,14 @@ public class HuertoDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.huerto_detail, container, false);
+
 
         // Show the dummy content as text in a TextView.
 
