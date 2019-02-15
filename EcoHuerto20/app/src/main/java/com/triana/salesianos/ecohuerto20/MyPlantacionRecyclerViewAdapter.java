@@ -21,10 +21,13 @@ public class MyPlantacionRecyclerViewAdapter extends RecyclerView.Adapter<MyPlan
 
     private final List<PlantacionResponse> mValues;
     private final PlantacionInteractionListener mListener;
+    private Context ctx;
 
     public MyPlantacionRecyclerViewAdapter(Context ctx, List<PlantacionResponse> items, PlantacionInteractionListener listener) {
         mValues = items;
         mListener = listener;
+        this.ctx=ctx;
+
     }
 
     @Override

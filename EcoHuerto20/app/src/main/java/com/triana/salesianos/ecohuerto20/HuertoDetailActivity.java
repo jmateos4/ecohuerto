@@ -72,6 +72,11 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
 //                    .add(R.id.fragment2, fragment1)
 //                    .commit();
         }
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragmentLayout, new PlantacionFragment())
+                .commit();
     }
 
     @Override
