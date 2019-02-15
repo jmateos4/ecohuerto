@@ -190,16 +190,15 @@ public class AddHuertoFragment extends DialogFragment {
 
 
                         MultipartBody.Part body =
-                                MultipartBody.Part.createFormData("avatar", "avatar", requestFile);
+                                MultipartBody.Part.createFormData("foto", "foto", requestFile);
 
 
-                        RequestBody nombre = RequestBody.create(MultipartBody.FORM, "huerto 9");
-                        RequestBody direccion = RequestBody.create(MultipartBody.FORM, "9");
-                        RequestBody foto = RequestBody.create(MultipartBody.FORM, "12345678");
-                        RequestBody espacio = RequestBody.create(MultipartBody.FORM, "null");
-                        RequestBody user = RequestBody.create(MultipartBody.FORM, "12345678");
+                        RequestBody nombre = RequestBody.create(MultipartBody.FORM, etNombre.getText().toString().trim());
+                        RequestBody direccion = RequestBody.create(MultipartBody.FORM, etDireccion.getText().toString().trim());
+                        RequestBody dimensiones = RequestBody.create(MultipartBody.FORM, etDimensiones.getText().toString().trim());
 
-                        Call<HuertosResponse> callRegisterImg= service.registerImg(body, nombre, direccion, foto, espacio, user);
+
+                        Call<HuertosResponse> callRegisterImg= service.registerImg(body, nombre, direccion, dimensiones);
 
                         callRegisterImg.enqueue(new Callback<HuertosResponse>() {
                             @Override

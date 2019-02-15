@@ -46,12 +46,10 @@ public interface HuertoService {
 
     @Multipart
     @POST("/huertos")
-    Call<HuertosResponse> registerImg(@Part MultipartBody.Part avatar,
+    Call<HuertosResponse> registerImg(@Part MultipartBody.Part foto,
                                       @Part("nombre") RequestBody nombre,
                                       @Part("direcion") RequestBody direccion,
-                                      @Part("foto")RequestBody foto,
-                                      @Part("espacio") RequestBody espacio,
-                                      @Part("user") RequestBody user);
+                                      @Part("dimensiones") RequestBody dimensiones);
 
 
 }
