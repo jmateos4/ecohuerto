@@ -64,32 +64,7 @@ public class AddHuertoFragment extends DialogFragment {
     }
 
     //Metodo Busqueda Archivos(Botón)
-    public void performFileSearch(){
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
-        startActivityForResult(intent, READ_REQUEST_CODE);
-    }
 
-    //ActivityResult(Botón)
-    public void onActivityResult( int requestCode, int resultCode,
-                                  Intent resultData) {
-
-        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-
-            Uri uri = null;
-            if (resultData != null) {
-                uri = resultData.getData();
-                Log.i("Filechooser URI", "Uri: " + uri.toString());
-                Glide
-                        .with(this)
-                        .load(uri)
-                        .into(imgCargada);
-                uriSelected = uri;
-
-            }
-        }
-    }
 
     public static AddHuertoFragment newInstance(String idUsuario) {
         AddHuertoFragment fragment = new AddHuertoFragment();
@@ -261,6 +236,33 @@ public class AddHuertoFragment extends DialogFragment {
         builder.setView(v);
         // Create the AlertDialog object and return it
         return builder.create();
+    }
+
+    public void performFileSearch(){
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(intent, READ_REQUEST_CODE);
+    }
+
+    //ActivityResult(Botón)
+    public void onActivityResult( int requestCode, int resultCode,
+                                  Intent resultData) {
+
+        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+
+            Uri uri = null;
+            if (resultData != null) {
+                uri = resultData.getData();
+                Log.i("Filechooser URI", "Uri: " + uri.toString());
+                Glide
+                        .with(this)
+                        .load(uri)
+                        .into(imgCargada);
+                uriSelected = uri;
+
+            }
+        }
     }
     @Override
     public void onAttach(Context context) {
