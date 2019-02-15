@@ -32,6 +32,7 @@ public class HuertoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HuertoInteractionListener {
 
     private HuertoService service;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class HuertoActivity extends AppCompatActivity
                 .add(R.id.fragment, new HuertoFragment())
                 .commit();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +76,7 @@ public class HuertoActivity extends AppCompatActivity
     }
 
     private void mostrarDialogAddHuerto() {
-        DialogFragment dialog = AddHuertoFragment.newInstance(1);
+        DialogFragment dialog = AddHuertoFragment.newInstance(UtilToken.getIdUser(HuertoActivity.this));
         dialog.show(getSupportFragmentManager(), "AddHuertoFragment");
     }
     @Override
@@ -116,14 +117,21 @@ public class HuertoActivity extends AppCompatActivity
         Fragment f = null;
 
         switch (item.getItemId()) {
-            case R.id.nav_pluviometro:
+            case R.id.nav_huertos:
                 f = new HuertoFragment();
+                fab.show();
+                break;
+            case R.id.nav_pluviometro:
+
+                fab.hide();
                 break;
             case R.id.nav_centroMeteorologico:
-
+                f = new CentroMeteorologicoFragment();
+                fab.hide();
                 break;
             case R.id.nav_profile:
                 f = new UserFragment();
+                fab.hide();
                 break;
             case R.id.logOut:
 

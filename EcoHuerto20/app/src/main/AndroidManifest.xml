@@ -27,8 +27,8 @@
         <activity
             android:name=".HuertoDetailActivity"
             android:label="@string/title_prueba_detail"
-            android:parentActivityName=".PruebaListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".PruebaListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.triana.salesianos.ecohuerto20.PruebaListActivity" />

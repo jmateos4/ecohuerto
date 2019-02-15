@@ -35,6 +35,7 @@
     <!-- Preferencias -->
     <string name="sharedpreferences_filename">login</string>
     <string name="jwt_key">JWT_KEY</string>
+    <string name="jwt_id">JWT_ID</string>
     <string name="title_prueba_list">Pruebas</string>
     <string name="title_prueba_detail">Prueba Detail</string>
     <string name="borrar">Delete</string>

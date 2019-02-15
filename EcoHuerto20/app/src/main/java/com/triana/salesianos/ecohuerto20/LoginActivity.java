@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString(getString(R.string.jwt_key), response.body().getToken());
                             editor.commit();*/
                             UtilToken.setToken(LoginActivity.this, response.body().getToken());
+                            UtilToken.setIdUser(LoginActivity.this, response.body().getUser().getId());
 
                             //startActivity(new Intent(LoginActivity.this, HuertoActivity.class));
                             startActivity(new Intent(LoginActivity.this, HuertoActivity.class));
