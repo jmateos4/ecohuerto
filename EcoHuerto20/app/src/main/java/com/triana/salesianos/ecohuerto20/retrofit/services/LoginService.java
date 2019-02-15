@@ -34,10 +34,5 @@ public interface LoginService {
     @GET("/users/{id}")
     Call<UserResponse> oneUser(@Path("id") String id);
 
-    @Multipart
-    @POST("/users")
-    Call<LoginResponse> doRegister(@Part MultipartBody.Part avatar,
-                                   @Part("email") RequestBody email,
-                                   @Part("password") RequestBody password);
 
 }

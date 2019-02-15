@@ -170,7 +170,7 @@ public class AddHuertoFragment extends DialogFragment {
             public void onClick(View v) {
                 if (uriSelected != null) {
 
-                    LoginService service = ServiceGenerator.createService(LoginService.class);
+                    HuertoService service = ServiceGenerator.createService(HuertoService.class);
 
                     try {
                         InputStream inputStream = getActivity().getContentResolver().openInputStream(uriSelected);
@@ -193,14 +193,17 @@ public class AddHuertoFragment extends DialogFragment {
                                 MultipartBody.Part.createFormData("avatar", "avatar", requestFile);
 
 
-                        RequestBody email = RequestBody.create(MultipartBody.FORM, "a@a.com");
-                        RequestBody password = RequestBody.create(MultipartBody.FORM, "12345678");
+                        RequestBody nombre = RequestBody.create(MultipartBody.FORM, "huerto 9");
+                        RequestBody direccion = RequestBody.create(MultipartBody.FORM, "9");
+                        RequestBody foto = RequestBody.create(MultipartBody.FORM, "12345678");
+                        RequestBody espacio = RequestBody.create(MultipartBody.FORM, "null");
+                        RequestBody user = RequestBody.create(MultipartBody.FORM, "12345678");
 
-                        Call<LoginResponse> callRegister = service.doRegister(body, email, password);
+                        Call<HuertosResponse> callRegisterImg= service.registerImg(body, nombre, direccion, foto, espacio, user);
 
-                        callRegister.enqueue(new Callback<LoginResponse>() {
+                        callRegisterImg.enqueue(new Callback<HuertosResponse>() {
                             @Override
-                            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                            public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {
                                 if (response.isSuccessful()) {
                                     Log.d("Uploaded", "Éxito");
                                     Log.d("Uploaded", response.body().toString());
@@ -210,7 +213,7 @@ public class AddHuertoFragment extends DialogFragment {
                             }
 
                             @Override
-                            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                            public void onFailure(Call<HuertosResponse> call, Throwable t) {
                                 Log.e("Upload error", t.getMessage());
                             }
                         });
