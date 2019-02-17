@@ -54,8 +54,7 @@ public class AddHuertoFragment extends DialogFragment {
     private Button btnUpload ;
     private Uri uriSelected;
     private UserResponse userL;
-    private HuertoDTO huerto;
-    private Espacio espacio;
+    MultipartBody.Part body;
     Context ctx;
 
 
@@ -74,6 +73,7 @@ public class AddHuertoFragment extends DialogFragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +82,11 @@ public class AddHuertoFragment extends DialogFragment {
         }
     }
 
+
+
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
 
         builder.setTitle("Añadir Huerto");
         builder.setMessage("")
@@ -103,9 +106,11 @@ public class AddHuertoFragment extends DialogFragment {
 
                                     userL = response.body();
                                     userL.getId();
-                                    espacio = new Espacio(null, etDimensiones.getText().toString());
-                                    huerto = new HuertoDTO (etNombre.getText().toString(),etDireccion.getText().toString() ,espacio, userL.getId());
-                                    Call <HuertosResponse> calla = service.addHuerto(huerto);
+                                    RequestBody nombre = RequestBody.create(MultipartBody.FORM, etNombre.getText().toString().trim());
+                                    RequestBody direccion = RequestBody.create(MultipartBody.FORM, etDireccion.getText().toString().trim());
+                                    RequestBody dimensiones = RequestBody.create(MultipartBody.FORM, etDimensiones.getText().toString().trim());
+                                    RequestBody user = RequestBody.create(MultipartBody.FORM, UtilToken.getIdUser(ctx).trim());
+                                    Call <HuertosResponse> calla = service.registerHuerto(body, nombre,direccion,dimensiones,user);
                                     calla.enqueue(new Callback<HuertosResponse>() {
                                         @Override
                                         public void onResponse(Call<HuertosResponse> calla, Response<HuertosResponse> response) {
@@ -163,8 +168,6 @@ public class AddHuertoFragment extends DialogFragment {
         imgCargada = v.findViewById(R.id.imagenPrev);
         btnUpload = v.findViewById(R.id.buttonUploadImg);
 
-
-
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,34 +192,10 @@ public class AddHuertoFragment extends DialogFragment {
                                         MediaType.parse(getActivity().getContentResolver().getType(uriSelected)), baos.toByteArray());
 
 
-                        MultipartBody.Part body =
+
+
+                        body =
                                 MultipartBody.Part.createFormData("foto", "foto", requestFile);
-
-
-                        RequestBody nombre = RequestBody.create(MultipartBody.FORM, etNombre.getText().toString().trim());
-                        RequestBody direccion = RequestBody.create(MultipartBody.FORM, etDireccion.getText().toString().trim());
-                        RequestBody dimensiones = RequestBody.create(MultipartBody.FORM, etDimensiones.getText().toString().trim());
-
-
-                        Call<HuertosResponse> callRegisterImg= service.registerImg(body, nombre, direccion, dimensiones);
-
-                        callRegisterImg.enqueue(new Callback<HuertosResponse>() {
-                            @Override
-                            public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {
-                                if (response.isSuccessful()) {
-                                    Log.d("Uploaded", "Éxito");
-                                    Log.d("Uploaded", response.body().toString());
-                                } else {
-                                    Log.e("Upload error", response.errorBody().toString());
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<HuertosResponse> call, Throwable t) {
-                                Log.e("Upload error", t.getMessage());
-                            }
-                        });
-
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -230,6 +209,8 @@ public class AddHuertoFragment extends DialogFragment {
                 performFileSearch();
             }
         });
+
+
 
         // Llamaría a Retrofit con el idUsuario que he recibido
         // y en el método onResponse de Retrofit tendría que poner
@@ -266,6 +247,7 @@ public class AddHuertoFragment extends DialogFragment {
             }
         }
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

@@ -38,8 +38,8 @@ public interface HuertoService {
     Call <List<PlantacionResponse>> listPlantacion(@Path("id_huerto") String id_huerto);
 
     //Necesita Multipart
-    @POST("huertos")
-    Call<HuertosResponse> addHuerto(@Body HuertoDTO huerto);
+//    @POST("huertos")
+//    Call<HuertosResponse> addHuerto(@Body HuertoDTO huerto);
 
     @GET("plantaciones/{id}")
     Call<PlantacionResponse> onePlantacion(@Path("id") String id);
@@ -47,10 +47,11 @@ public interface HuertoService {
 
     @Multipart
     @POST("huertos")
-    Call<HuertosResponse> registerImg(@Part MultipartBody.Part foto,
+    Call<HuertosResponse> registerHuerto(@Part MultipartBody.Part foto,
                                       @Part("nombre") RequestBody nombre,
                                       @Part("direcion") RequestBody direccion,
-                                      @Part("dimensiones") RequestBody dimensiones);
+                                      @Part("dimensiones") RequestBody dimensiones,
+                                      @Part("user") RequestBody user);
 
 
 }
