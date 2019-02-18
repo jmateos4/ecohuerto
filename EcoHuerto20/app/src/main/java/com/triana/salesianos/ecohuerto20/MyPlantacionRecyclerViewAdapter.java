@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.triana.salesianos.ecohuerto20.interfaces.PlantacionInteractionListener;
@@ -35,6 +36,8 @@ public class MyPlantacionRecyclerViewAdapter extends RecyclerView.Adapter<MyPlan
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_plantacion, parent, false);
         return new ViewHolder(view);
+
+
     }
 
     @Override
@@ -42,6 +45,11 @@ public class MyPlantacionRecyclerViewAdapter extends RecyclerView.Adapter<MyPlan
         holder.mItem = mValues.get(position);
         holder.mNombre.setText(mValues.get(position).getNombre());
         holder.mTipo.setText(mValues.get(position).getTipo());
+        if(mValues.get(position).getRiegoAut())
+            holder.mCruz.setVisibility(View.INVISIBLE);
+        else
+            holder.mCruz.setVisibility(View.VISIBLE);
+
     }
 
     @Override
@@ -53,6 +61,7 @@ public class MyPlantacionRecyclerViewAdapter extends RecyclerView.Adapter<MyPlan
         public final View mView;
         public final TextView mNombre;
         public final TextView mTipo;
+        public final ImageView mCruz;
         public PlantacionResponse mItem;
 
         public ViewHolder(View view) {
@@ -60,6 +69,8 @@ public class MyPlantacionRecyclerViewAdapter extends RecyclerView.Adapter<MyPlan
             mView = view;
             mNombre = (TextView) view.findViewById(R.id.nombre);
             mTipo = (TextView) view.findViewById(R.id.tipo);
+            mCruz = view.findViewById(R.id.cruz);
+
         }
 
     }
