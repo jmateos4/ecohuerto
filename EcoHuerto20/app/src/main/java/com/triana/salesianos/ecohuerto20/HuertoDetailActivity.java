@@ -157,8 +157,53 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
         dialog.show();
     }
 
+
     @Override
-    public void onClickPlantacion(String nombre) {
+    public void borrarPlantacion(final String idPlantacion) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(HuertoDetailActivity.this);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(R.string.dialog_message)
+                .setTitle(R.string.dialog_title);
+
+
+
+        builder.setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                        UtilToken.getToken(HuertoDetailActivity.this), TipoAutenticacion.JWT);
+                Call call = service.borrarPlantacion(idPlantacion);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        if (response.isSuccessful()) {
+                            startActivity(new Intent(HuertoDetailActivity.this, HuertoDetailActivity.class));
+                            Toast.makeText(HuertoDetailActivity.this, "Borrado satisfactoriamente", Toast.LENGTH_LONG);
+                        } else {
+                            Toast.makeText(HuertoDetailActivity.this, "No se ha borrado", Toast.LENGTH_LONG);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        // Toast
+                        Log.i("onFailure", "error en retrofit");
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+
+        // 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
 
     }
 }

@@ -38,6 +38,9 @@ public interface HuertoService {
     @GET("plantaciones/huerto/{id_huerto}")
     Call <List<PlantacionResponse>> listPlantacion(@Path("id_huerto") String id_huerto);
 
+    @DELETE("plantaciones/{id}")
+    Call<ResponseBody> borrarPlantacion(@Path("id") String id);
+
     //Necesita Multipart
 //    @POST("huertos")
 //    Call<HuertosResponse> addHuerto(@Body HuertoDTO huerto);
