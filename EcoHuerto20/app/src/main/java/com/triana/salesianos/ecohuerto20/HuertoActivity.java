@@ -15,11 +15,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
 public class HuertoActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HuertoInteractionListener {
 
     private HuertoService service;
     private FloatingActionButton fab;
@@ -190,4 +192,8 @@ public class HuertoActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public void borrarHuerto(String id) {
+
+    }
 }

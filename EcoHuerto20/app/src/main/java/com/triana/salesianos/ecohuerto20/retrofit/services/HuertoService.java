@@ -14,6 +14,7 @@ import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -32,7 +33,7 @@ public interface HuertoService {
     Call<HuertosResponse> oneHuerto(@Path("id") String id);
 
     @DELETE("huertos/{id}")
-    Call borrarHuerto(@Path("id") String id);
+    Call<ResponseBody> borrarHuerto(@Path("id") String id);
 
     @GET("plantaciones/huerto/{id_huerto}")
     Call <List<PlantacionResponse>> listPlantacion(@Path("id_huerto") String id_huerto);

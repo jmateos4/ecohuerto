@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
 import com.triana.salesianos.ecohuerto20.interfaces.PlantacionInteractionListener;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
 
 import retrofit2.Call;
@@ -31,7 +33,8 @@ import retrofit2.Response;
  */
 public class HuertoDetailActivity extends AppCompatActivity implements PlantacionInteractionListener, HuertoInteractionListener {
 
-    private HuertoService service;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,9 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FrameLayout detalle = findViewById(R.id.plantaciones_detail_container);
-                detalle.setVisibility(View.VISIBLE);
+//                FrameLayout detalle = findViewById(R.id.plantaciones_detail_container);
+//                detalle.setVisibility(View.VISIBLE);
+                borrarHuerto(getIntent().getStringExtra(HuertoDetailFragment.ARG_ITEM_ID));
             }
         });
 
@@ -112,14 +116,20 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
         builder.setMessage(R.string.dialog_message)
                 .setTitle(R.string.dialog_title);
 
+
+
         builder.setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                        UtilToken.getToken(HuertoDetailActivity.this), TipoAutenticacion.JWT);
                 Call call = service.borrarHuerto(idHuerto);
                 call.enqueue(new Callback() {
                     @Override
                     public void onResponse(Call call, Response response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(HuertoDetailActivity.this, "Borrado satisfactoriamente", Toast.LENGTH_LONG);
+                            startActivity(new Intent(HuertoDetailActivity.this, HuertoActivity.class));
+                            finish();
                         } else {
                             Toast.makeText(HuertoDetailActivity.this, "No se ha borrado", Toast.LENGTH_LONG);
                         }
