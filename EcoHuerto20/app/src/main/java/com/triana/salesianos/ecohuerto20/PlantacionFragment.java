@@ -92,8 +92,8 @@ public class PlantacionFragment extends Fragment {
             HuertoService service = ServiceGenerator.createService(HuertoService.class,
                     UtilToken.getToken(ctx), TipoAutenticacion.JWT);
 
-//            final String idHuerto = getArguments().getString(ARG_ITEM_ID);
-            Call<List<PlantacionResponse>> call = service.listPlantacion("5c63e283650eee00223cf392");
+            final String idHuerto = getArguments().getString(ARG_ITEM_ID);
+            Call<List<PlantacionResponse>> call = service.listPlantacion(idHuerto);
             call.enqueue(new Callback<List<PlantacionResponse>>() {
                 @Override
                 public void onResponse(Call<List<PlantacionResponse>> call, Response<List<PlantacionResponse>> response) {
