@@ -173,7 +173,6 @@ public class AddHuertoFragment extends DialogFragment {
             public void onClick(View v) {
                 if (uriSelected != null) {
 
-                    HuertoService service = ServiceGenerator.createService(HuertoService.class);
 
                     try {
                         InputStream inputStream = getActivity().getContentResolver().openInputStream(uriSelected);

@@ -46,7 +46,7 @@ public interface HuertoService {
 
 
     @Multipart
-    @POST("huertos")
+    @POST("/huertos")
     Call<HuertosResponse> registerHuerto(@Part MultipartBody.Part foto,
                                       @Part("nombre") RequestBody nombre,
                                       @Part("direcion") RequestBody direccion,
