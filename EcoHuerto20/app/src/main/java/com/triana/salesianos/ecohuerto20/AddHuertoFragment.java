@@ -143,12 +143,6 @@ public class AddHuertoFragment extends DialogFragment {
                         });
 
 
-
-
-
-
-
-
                     }
                 })
                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
