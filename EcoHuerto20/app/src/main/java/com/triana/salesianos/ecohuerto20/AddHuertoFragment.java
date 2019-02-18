@@ -101,7 +101,7 @@ public class AddHuertoFragment extends DialogFragment {
                         Call<UserResponse> call = serviceUser.oneUser(UtilToken.getIdUser(ctx));
                         call.enqueue(new Callback<UserResponse>() {
                             @Override
-                            public void onResponse(Call<UserResponse> 1ºcall, Response<UserResponse> response) {
+                            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                                 if (response.isSuccessful()) {
 
                                     userL = response.body();
@@ -151,8 +151,6 @@ public class AddHuertoFragment extends DialogFragment {
                     }
                 });
 
-
-
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View v = inflater.inflate(R.layout.fragment_add_huerto, null);
 
@@ -166,7 +164,6 @@ public class AddHuertoFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 if (uriSelected != null) {
-
 
                     try {
                         InputStream inputStream = getActivity().getContentResolver().openInputStream(uriSelected);
@@ -183,8 +180,6 @@ public class AddHuertoFragment extends DialogFragment {
                         RequestBody requestFile =
                                 RequestBody.create(
                                         MediaType.parse(getActivity().getContentResolver().getType(uriSelected)), baos.toByteArray());
-
-
 
 
                         body =
