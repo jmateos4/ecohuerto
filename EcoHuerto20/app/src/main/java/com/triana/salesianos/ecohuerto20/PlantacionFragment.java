@@ -71,12 +71,13 @@ public class PlantacionFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_plantacion_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_plantacion_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
