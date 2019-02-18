@@ -53,7 +53,7 @@ public interface HuertoService {
     @POST("/huertos")
     Call<HuertosResponse> registerHuerto(@Part MultipartBody.Part foto,
                                       @Part("nombre") RequestBody nombre,
-                                      @Part("direcion") RequestBody direccion,
+                                      @Part("direccion") RequestBody direccion,
                                       @Part("dimensiones") RequestBody dimensiones,
                                       @Part("user") RequestBody user);
 
