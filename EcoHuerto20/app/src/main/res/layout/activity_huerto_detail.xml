@@ -65,7 +65,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/prueba_detail_container"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
+        app:srcCompat="@drawable/delete" />
 
 
 </android.support.design.widget.CoordinatorLayout>
