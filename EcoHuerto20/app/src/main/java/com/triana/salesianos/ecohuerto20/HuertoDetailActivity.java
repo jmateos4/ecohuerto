@@ -9,6 +9,7 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.triana.salesianos.ecohuerto20.interfaces.PlantacionInteractionListener;
 
@@ -32,8 +33,8 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                FrameLayout detalle = findViewById(R.id.plantaciones_detail_container);
+                detalle.setVisibility(View.VISIBLE);
             }
         });
 
@@ -64,21 +65,17 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
                     .add(R.id.prueba_detail_container, fragment)
                     .commit();
 
-//            Bundle arguments1 = new Bundle();
-//            arguments1.putString(PlantacionFragment.ARG_ITEM_ID, getIntent().getStringExtra(PlantacionFragment.ARG_ITEM_ID));
-//            PlantacionFragment fragment1 = new PlantacionFragment();
-//            fragment1.setArguments(arguments1);
-//            getSupportFragmentManager().beginTransaction()
-//                    .add(R.id.fragment2, fragment1)
-//                    .commit();
+            Bundle arguments1 = new Bundle();
+            arguments1.putString(PlantacionFragment.ARG_ITEM_ID, getIntent().getStringExtra(PlantacionFragment.ARG_ITEM_ID));
+            PlantacionFragment fragment1 = new PlantacionFragment();
+            fragment1.setArguments(arguments1);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.plantaciones_detail_container, fragment1)
+                    .commit();
         }
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fragmentLayout, new PlantacionFragment())
-                .commit();
-    }
 
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

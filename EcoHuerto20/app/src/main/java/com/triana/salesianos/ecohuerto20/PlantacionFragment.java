@@ -37,7 +37,8 @@ import static com.triana.salesianos.ecohuerto20.HuertoDetailFragment.ARG_ITEM_ID
  */
 public class PlantacionFragment extends Fragment {
 
-//    public static final String ARG_ITEM_ID = "item_id";
+
+    public static final String ARG_ITEM_ID = "item_id";
     private Context ctx;
 
     // TODO: Customize parameter argument names
