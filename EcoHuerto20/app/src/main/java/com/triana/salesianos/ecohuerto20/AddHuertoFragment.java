@@ -63,7 +63,32 @@ public class AddHuertoFragment extends DialogFragment {
     }
 
     //Metodo Busqueda Archivos(Botón)
+    public void performFileSearch(){
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(intent, READ_REQUEST_CODE);
+    }
 
+    //ActivityResult(Botón)
+    public void onActivityResult( int requestCode, int resultCode,
+                                  Intent resultData) {
+
+        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+
+            Uri uri = null;
+            if (resultData != null) {
+                uri = resultData.getData();
+                Log.i("Filechooser URI", "Uri: " + uri.toString());
+                Glide
+                        .with(this)
+                        .load(uri)
+                        .into(imgCargada);
+                uriSelected = uri;
+
+            }
+        }
+    }
 
     public static AddHuertoFragment newInstance(String idUsuario) {
         AddHuertoFragment fragment = new AddHuertoFragment();
@@ -94,6 +119,38 @@ public class AddHuertoFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         final HuertoService service = ServiceGenerator.createService(HuertoService.class,
                                 UtilToken.getToken(ctx), TipoAutenticacion.JWT);
+
+                        if (uriSelected != null) {
+
+                            try {
+                                InputStream inputStream = getActivity().getContentResolver().openInputStream(uriSelected);
+                                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                                int cantBytes;
+                                byte[] buffer = new byte[1024*4];
+
+                                while ((cantBytes = bufferedInputStream.read(buffer,0,1024*4)) != -1) {
+                                    baos.write(buffer,0,cantBytes);
+                                }
+
+
+                                RequestBody requestFile =
+                                        RequestBody.create(
+                                                MediaType.parse(getActivity().getContentResolver().getType(uriSelected)), baos.toByteArray());
+
+
+                                body =
+                                        MultipartBody.Part.createFormData("foto", "foto", requestFile);
+
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
 
                         LoginService serviceUser = ServiceGenerator.createService(LoginService.class,
                                 UtilToken.getToken(ctx), TipoAutenticacion.JWT);
@@ -163,38 +220,9 @@ public class AddHuertoFragment extends DialogFragment {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (uriSelected != null) {
-
-                    try {
-                        InputStream inputStream = getActivity().getContentResolver().openInputStream(uriSelected);
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-                        int cantBytes;
-                        byte[] buffer = new byte[1024*4];
-
-                        while ((cantBytes = bufferedInputStream.read(buffer,0,1024*4)) != -1) {
-                            baos.write(buffer,0,cantBytes);
-                        }
-
-
-                        RequestBody requestFile =
-                                RequestBody.create(
-                                        MediaType.parse(getActivity().getContentResolver().getType(uriSelected)), baos.toByteArray());
-
-
-                        body =
-                                MultipartBody.Part.createFormData("foto", "foto", requestFile);
-
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-
                 performFileSearch();
+
+
             }
         });
 
@@ -209,32 +237,7 @@ public class AddHuertoFragment extends DialogFragment {
         return builder.create();
     }
 
-    public void performFileSearch(){
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
-        startActivityForResult(intent, READ_REQUEST_CODE);
-    }
 
-    //ActivityResult(Botón)
-    public void onActivityResult( int requestCode, int resultCode,
-                                  Intent resultData) {
-
-        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-
-            Uri uri = null;
-            if (resultData != null) {
-                uri = resultData.getData();
-                Log.i("Filechooser URI", "Uri: " + uri.toString());
-                Glide
-                        .with(this)
-                        .load(uri)
-                        .into(imgCargada);
-                uriSelected = uri;
-
-            }
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
