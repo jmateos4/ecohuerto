@@ -37,7 +37,8 @@ import static com.triana.salesianos.ecohuerto20.HuertoDetailFragment.ARG_ITEM_ID
  */
 public class PlantacionFragment extends Fragment {
 
-//    public static final String ARG_ITEM_ID = "item_id";
+
+    public static final String ARG_ITEM_ID = "item_id";
     private Context ctx;
 
     // TODO: Customize parameter argument names
@@ -70,12 +71,13 @@ public class PlantacionFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_plantacion_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_plantacion_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {

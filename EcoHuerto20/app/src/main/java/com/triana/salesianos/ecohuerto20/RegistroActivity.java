@@ -76,9 +76,10 @@ public class RegistroActivity extends AppCompatActivity {
                             if (response.code() == 201) {
                                 //ServiceGenerator.jwtToken = response.body().getToken();
                                 UtilToken.setToken(RegistroActivity.this, response.body().getToken());
+                                UtilToken.setIdUser(RegistroActivity.this, response.body().getUser().getId());
 
                                 startActivity(new Intent(RegistroActivity.this, HuertoActivity.class));                        // Toast.makeText(RegistroActivity.this, "Usuario registrado y logeado con éxito", Toast.LENGTH_LONG).show();
-                                Log.d("token", response.body().getToken());
+                                finish();
 
                             } else {
                                 // error

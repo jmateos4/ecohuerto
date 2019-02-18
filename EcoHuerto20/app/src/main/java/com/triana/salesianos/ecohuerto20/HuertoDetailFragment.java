@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class HuertoDetailFragment extends Fragment {
      */
     public static final String ARG_ITEM_ID = "item_id";
 
+
     /**
      * The dummy content this fragment is presenting.
      */
@@ -60,6 +62,8 @@ public class HuertoDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
 
     }
@@ -90,8 +94,8 @@ public class HuertoDetailFragment extends Fragment {
                 public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {
                     if (response.isSuccessful()) {
                         mItem = new HuertosResponse(idHuerto, response.body().getNombre(), response.body().getDireccion(), response.body().getFoto(), response.body().getEspacio(), response.body().getUser(), response.body().getCreatedAt(), response.body().getUpdatedAt());
-                        appBarLayout.setTitle(mItem.getNombre());
-                        //appBarLayout.setBackground(LoadImageFromWebOperations(mItem.getFoto()));
+                        appBarLayout.setTitle(mItem.getNombre()+"\n↑Arrastra para más información↑");
+
                         Glide
                                 .with(getContext())
                                 .load(mItem.getFoto())
@@ -102,8 +106,8 @@ public class HuertoDetailFragment extends Fragment {
                                         appBarLayout.setBackground(resource);
                                     }
                                 });
-                        ((TextView) rootView.findViewById(R.id.localizacion_detail)).setText(mItem.getDireccion());
-                        ((TextView) rootView.findViewById(R.id.dimension_detail)).setText(mItem.getEspacio().getDimensiones());
+                        ((TextView) rootView.findViewById(R.id.localizacion_detail)).setText("Localización: "+mItem.getDireccion());
+                        ((TextView) rootView.findViewById(R.id.dimension_detail)).setText("Dimensiones: "+mItem.getEspacio().getDimensiones());
                     } else {
                         // Toast
                     }

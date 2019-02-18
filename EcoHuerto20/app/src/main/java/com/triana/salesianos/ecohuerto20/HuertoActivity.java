@@ -79,14 +79,25 @@ public class HuertoActivity extends AppCompatActivity
         DialogFragment dialog = AddHuertoFragment.newInstance(UtilToken.getIdUser(HuertoActivity.this));
         dialog.show(getSupportFragmentManager(), "AddHuertoFragment");
     }
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+
+    private void mostrarDialogEditUser() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to log out?")
+                .setTitle("Log out");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                UtilToken.setIdUser(HuertoActivity.this, null);
+                UtilToken.setToken(HuertoActivity.this, null);
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
@@ -119,6 +130,12 @@ public class HuertoActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.nav_huertos:
                 f = new HuertoFragment();
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mostrarDialogAddHuerto();
+                    }
+                });
                 fab.show();
                 break;
             case R.id.nav_pluviometro:
@@ -131,7 +148,13 @@ public class HuertoActivity extends AppCompatActivity
                 break;
             case R.id.nav_profile:
                 f = new UserFragment();
-                fab.hide();
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mostrarDialogAddHuerto();
+                    }
+                });
+                fab.show();
                 break;
             case R.id.logOut:
 
@@ -197,6 +220,34 @@ public class HuertoActivity extends AppCompatActivity
         AlertDialog dialog = builder.create();
 
         dialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Do you want to log out?")
+                    .setTitle("Log out");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    UtilToken.setIdUser(HuertoActivity.this, null);
+                    UtilToken.setToken(HuertoActivity.this, null);
+                    finish();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
     }
 
 }

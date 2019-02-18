@@ -41,6 +41,22 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <ScrollView
+        android:layout_width="390dp"
+        android:layout_height="400dp"
+        android:visibility="visible"
+        app:layout_anchor="@+id/prueba_detail_container"
+        app:layout_anchorGravity="bottom|center"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:id="@+id/plantaciones_detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </FrameLayout>
+    </ScrollView>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -50,5 +66,6 @@
         app:layout_anchor="@+id/prueba_detail_container"
         app:layout_anchorGravity="top|end"
         app:srcCompat="@android:drawable/stat_notify_chat" />
+
 
 </android.support.design.widget.CoordinatorLayout>
