@@ -238,6 +238,7 @@ public class AddHuertoFragment extends DialogFragment {
 
     @Override
     public void onAttach(Context context) {
+        ctx = context;
         super.onAttach(context);
         this.ctx = context;
 

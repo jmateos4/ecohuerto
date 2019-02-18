@@ -3,6 +3,7 @@ package com.triana.salesianos.ecohuerto20;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,8 +36,10 @@ public class HuertoFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private HuertoInteractionListener mListener;
+    private RecyclerView recyclerView;
 
     private Context ctx;
+    private SwipeRefreshLayout swipe;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -68,11 +71,12 @@ public class HuertoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_huerto_list, container, false);
+        swipe = view.findViewById(R.id.swipeHuertos);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
+        if (view instanceof SwipeRefreshLayout) {
             Context context = view.getContext();
-            final RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = view.findViewById(R.id.listHuertos);
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -106,6 +110,14 @@ public class HuertoFragment extends Fragment {
                 }
             });
 
+            swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    refreshData();
+                    swipe.setRefreshing(false);
+                }
+            });
+
             /**
              *
              */
@@ -131,5 +143,32 @@ public class HuertoFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void refreshData() {
+
+        HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                UtilToken.getToken(ctx), TipoAutenticacion.JWT);
+
+        Call<ResponseContainer<HuertosResponse>> call = service.listHuerto();
+        call.enqueue(new Callback<ResponseContainer<HuertosResponse>>() {
+            @Override
+            public void onResponse(Call<ResponseContainer<HuertosResponse>> call, Response<ResponseContainer<HuertosResponse>> response) {
+                if (response.isSuccessful()) {
+                    recyclerView.setAdapter(new MyHuertoRecyclerViewAdapter(ctx, response.body().getRows(), mListener));
+                } else {
+                    // Toast
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseContainer<HuertosResponse>> call, Throwable t) {
+                // Toast
+                Log.i("onFailure", "error en retrofit");
+            }
+        });
+
     }
 }
