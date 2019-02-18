@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
 import com.triana.salesianos.ecohuerto20.interfaces.PlantacionInteractionListener;
+import com.triana.salesianos.ecohuerto20.model.PlantacionResponse;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
@@ -205,5 +206,100 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
 
         dialog.show();
 
+    }
+
+    @Override
+    public void setRiegoAutOnOff(final String idPlantacion, final String nombre, final String tipo, final String huerto, final Boolean riegoAut) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(HuertoDetailActivity.this);
+
+        if (riegoAut == false) {
+            // 2. Chain together various setter methods to set the dialog characteristics
+            builder.setMessage(R.string.dialog_message_riegoOn)
+                    .setTitle(R.string.dialog_title_riegoOn);
+
+
+            builder.setPositiveButton(R.string.activar, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                            UtilToken.getToken(HuertoDetailActivity.this), TipoAutenticacion.JWT);
+                    Call<PlantacionResponse> call = service.riegoAut(idPlantacion, new PlantacionResponse(nombre, tipo, huerto, true));
+                    call.enqueue(new Callback<PlantacionResponse>() {
+                        @Override
+                        public void onResponse(Call<PlantacionResponse> call, Response<PlantacionResponse> response) {
+                            if (response.isSuccessful()) {
+                                new PlantacionResponse();
+                                startActivity(new Intent(HuertoDetailActivity.this, HuertoDetailActivity.class));
+                                Toast.makeText(HuertoDetailActivity.this, "Activado satisfactoriamente", Toast.LENGTH_LONG);
+                            } else {
+                                Toast.makeText(HuertoDetailActivity.this, "No se ha activado", Toast.LENGTH_LONG);
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<PlantacionResponse> call, Throwable t) {
+                            // Toast
+                            Log.i("onFailure", "error en retrofit");
+                        }
+                    });
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+
+
+            // 3. Get the AlertDialog from create()
+            AlertDialog dialog = builder.create();
+
+            dialog.show();
+        }
+
+        if (riegoAut==true){
+            // 2. Chain together various setter methods to set the dialog characteristics
+            builder.setMessage(R.string.dialog_message_riegoOff)
+                    .setTitle(R.string.dialog_title_riegoOff);
+
+
+            builder.setPositiveButton(R.string.desactivar, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                            UtilToken.getToken(HuertoDetailActivity.this), TipoAutenticacion.JWT);
+                    Call<PlantacionResponse> call = service.riegoAut(idPlantacion, new PlantacionResponse(nombre, tipo, huerto, false));
+                    call.enqueue(new Callback<PlantacionResponse>() {
+                        @Override
+                        public void onResponse(Call<PlantacionResponse> call, Response<PlantacionResponse> response) {
+                            if (response.isSuccessful()) {
+                                new PlantacionResponse();
+                                startActivity(new Intent(HuertoDetailActivity.this, HuertoDetailActivity.class));
+                                Toast.makeText(HuertoDetailActivity.this, "Activado satisfactoriamente", Toast.LENGTH_LONG);
+                            } else {
+                                Toast.makeText(HuertoDetailActivity.this, "No se ha activado", Toast.LENGTH_LONG);
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<PlantacionResponse> call, Throwable t) {
+                            // Toast
+                            Log.i("onFailure", "error en retrofit");
+                        }
+                    });
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+
+
+            // 3. Get the AlertDialog from create()
+            AlertDialog dialog = builder.create();
+
+            dialog.show();
+        }
     }
 }

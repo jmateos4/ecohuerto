@@ -34,6 +34,14 @@ public class PlantacionResponse {
         public PlantacionResponse() {
         }
 
+        public PlantacionResponse(String nombre, String tipo, String huerto, Boolean riegoAut){
+            this.nombre=nombre;
+            this.tipo=tipo;
+            this.huerto=huerto;
+            this.riegoAut=riegoAut;
+        }
+
+
         /**
          *
          * @param updatedAt

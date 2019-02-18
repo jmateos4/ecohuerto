@@ -69,6 +69,13 @@ public class MyPlantacionRecyclerViewAdapter extends RecyclerView.Adapter<MyPlan
                 return true;
             }
         });
+
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.setRiegoAutOnOff(mValues.get(position).getId(), mValues.get(position).getNombre(), mValues.get(position).getTipo(), mValues.get(position).getHuerto(), mValues.get(position).getRiegoAut());
+            }
+        });
     }
     @Override
     public int getItemCount() {

@@ -21,6 +21,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -47,6 +48,10 @@ public interface HuertoService {
 
     @GET("plantaciones/{id}")
     Call<PlantacionResponse> onePlantacion(@Path("id") String id);
+
+    @PUT("plantaciones/{id}")
+    Call<PlantacionResponse> riegoAut(@Path("id") String id,
+                                      @Body PlantacionResponse plantacionResponse);
 
 
     @Multipart
