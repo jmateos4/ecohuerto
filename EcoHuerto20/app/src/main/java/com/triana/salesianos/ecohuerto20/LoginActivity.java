@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             //startActivity(new Intent(LoginActivity.this, HuertoActivity.class));
                             startActivity(new Intent(LoginActivity.this, HuertoActivity.class));
+                            finish();
                         }
                     }
 
@@ -94,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentRegistro = new Intent(LoginActivity.this, RegistroActivity.class);
                 startActivity(intentRegistro);
+                finish();
             }
         });
 
