@@ -80,6 +80,10 @@ public class HuertoActivity extends AppCompatActivity
         dialog.show(getSupportFragmentManager(), "AddHuertoFragment");
     }
 
+    private void mostrarDialogEditUser() {
+        DialogFragment dialog = AddHuertoFragment.newInstance(UtilToken.getIdUser(HuertoActivity.this));
+        dialog.show(getSupportFragmentManager(), "AddHuertoFragment");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,6 +115,12 @@ public class HuertoActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.nav_huertos:
                 f = new HuertoFragment();
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mostrarDialogAddHuerto();
+                    }
+                });
                 fab.show();
                 break;
             case R.id.nav_pluviometro:
@@ -123,7 +133,13 @@ public class HuertoActivity extends AppCompatActivity
                 break;
             case R.id.nav_profile:
                 f = new UserFragment();
-                fab.hide();
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mostrarDialogAddHuerto();
+                    }
+                });
+                fab.show();
                 break;
             case R.id.logOut:
 
