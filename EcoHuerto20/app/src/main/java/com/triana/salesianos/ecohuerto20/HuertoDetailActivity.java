@@ -1,17 +1,27 @@
 package com.triana.salesianos.ecohuerto20;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
 import com.triana.salesianos.ecohuerto20.interfaces.PlantacionInteractionListener;
+import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * An activity representing a single Prueba detail screen. This
@@ -19,8 +29,9 @@ import com.triana.salesianos.ecohuerto20.interfaces.PlantacionInteractionListene
  * item details are presented side-by-side with a list of items
  * in a {@link HuertoFragment}.
  */
-public class HuertoDetailActivity extends AppCompatActivity implements PlantacionInteractionListener {
+public class HuertoDetailActivity extends AppCompatActivity implements PlantacionInteractionListener, HuertoInteractionListener {
 
+    private HuertoService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +101,50 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void borrarHuerto(final String idHuerto) {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(HuertoDetailActivity.this);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(R.string.dialog_message)
+                .setTitle(R.string.dialog_title);
+
+        builder.setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Call call = service.borrarHuerto(idHuerto);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(HuertoDetailActivity.this, "Borrado satisfactoriamente", Toast.LENGTH_LONG);
+                        } else {
+                            Toast.makeText(HuertoDetailActivity.this, "No se ha borrado", Toast.LENGTH_LONG);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        // Toast
+                        Log.i("onFailure", "error en retrofit");
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+
+        // 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 
     @Override
