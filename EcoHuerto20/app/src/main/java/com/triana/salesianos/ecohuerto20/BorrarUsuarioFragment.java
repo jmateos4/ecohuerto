@@ -16,7 +16,6 @@ import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 public class BorrarUsuarioFragment extends DialogFragment {
     private static final String ARG_ID_USUARIO = "id_usuario";
 
-    // TODO: Rename and change types of parameters
     private int idUsuarioBorrar;
     private TextView tvNombre;
     private HuertosResponse huerto;

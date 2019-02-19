@@ -18,12 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
-import com.triana.salesianos.ecohuerto20.model.Espacio;
-import com.triana.salesianos.ecohuerto20.model.HuertoDTO;
 import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
-import com.triana.salesianos.ecohuerto20.model.LoginResponse;
-import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 import com.triana.salesianos.ecohuerto20.model.UserResponse;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
@@ -32,7 +27,6 @@ import com.triana.salesianos.ecohuerto20.retrofit.services.LoginService;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;

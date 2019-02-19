@@ -13,21 +13,17 @@ import android.view.ViewGroup;
 
 
 import com.triana.salesianos.ecohuerto20.interfaces.PlantacionInteractionListener;
-import com.triana.salesianos.ecohuerto20.model.Espacio;
-import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.model.PlantacionResponse;
-import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
+import com.triana.salesianos.ecohuerto20.retrofit.services.PlantacionService;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.triana.salesianos.ecohuerto20.HuertoDetailFragment.ARG_ITEM_ID;
 
 /**
  * A fragment representing a list of Items.
@@ -89,7 +85,7 @@ public class PlantacionFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             //recyclerView.setAdapter(new MyPlantacionRecyclerViewAdapter(ctx, listPlantacion, mListener));
-            HuertoService service = ServiceGenerator.createService(HuertoService.class,
+            PlantacionService service = ServiceGenerator.createService(PlantacionService.class,
                     UtilToken.getToken(ctx), TipoAutenticacion.JWT);
 
             final String idHuerto = getArguments().getString(ARG_ITEM_ID);

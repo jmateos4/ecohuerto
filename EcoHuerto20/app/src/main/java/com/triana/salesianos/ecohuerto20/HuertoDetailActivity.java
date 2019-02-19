@@ -4,7 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
@@ -21,6 +20,7 @@ import com.triana.salesianos.ecohuerto20.model.PlantacionResponse;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
+import com.triana.salesianos.ecohuerto20.retrofit.services.PlantacionService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,9 +34,6 @@ import retrofit2.Response;
  */
 public class HuertoDetailActivity extends AppCompatActivity implements PlantacionInteractionListener, HuertoInteractionListener {
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,34 +41,29 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
+        FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fabAdd);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mostrarDialogAddPlantacion(getIntent().getStringExtra(HuertoDetailFragment.ARG_ITEM_ID));
+            }
+        });
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                FrameLayout detalle = findViewById(R.id.plantaciones_detail_container);
-//                detalle.setVisibility(View.VISIBLE);
                 borrarHuerto(getIntent().getStringExtra(HuertoDetailFragment.ARG_ITEM_ID));
             }
         });
 
-        // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        // savedInstanceState is non-null when there is fragment state
-        // saved from previous configurations of this activity
-        // (e.g. when rotating the screen from portrait to landscape).
-        // In this case, the fragment will automatically be re-added
-        // to its container so we don't need to manually add it.
-        // For more information, see the Fragments API guide at:
-        //
-        // http://developer.android.com/guide/components/fragments.html
-        //
         if (savedInstanceState == null) {
-            // Create the detail fragment and add it to the activity
-            // using a fragment transacHuertoDetailFragmenttion.
+
             Bundle arguments = new Bundle();
             arguments.putString(HuertoDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(HuertoDetailFragment.ARG_ITEM_ID));
@@ -88,6 +80,7 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.plantaciones_detail_container, fragment1)
                     .commit();
+
         }
 
 
@@ -96,12 +89,6 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
             navigateUpTo(new Intent(this, HuertoFragment.class));
             return true;
         }
@@ -171,7 +158,7 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
 
         builder.setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                PlantacionService service = ServiceGenerator.createService(PlantacionService.class,
                         UtilToken.getToken(HuertoDetailActivity.this), TipoAutenticacion.JWT);
                 Call call = service.borrarPlantacion(idPlantacion);
                 call.enqueue(new Callback() {
@@ -208,6 +195,11 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
 
     }
 
+    public void mostrarDialogAddPlantacion(String idHuerto){
+        DialogFragment dialog = AddPlantacionFragment.newInstance(idHuerto);
+        dialog.show(getSupportFragmentManager(), "AddPlantacionFragment");
+    }
+
     @Override
     public void setRiegoAutOnOff(final String idPlantacion, final String nombre, final String tipo, final String huerto, final Boolean riegoAut) {
         AlertDialog.Builder builder = new AlertDialog.Builder(HuertoDetailActivity.this);
@@ -220,7 +212,7 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
 
             builder.setPositiveButton(R.string.activar, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                    PlantacionService service = ServiceGenerator.createService(PlantacionService.class,
                             UtilToken.getToken(HuertoDetailActivity.this), TipoAutenticacion.JWT);
                     Call<PlantacionResponse> call = service.riegoAut(idPlantacion, new PlantacionResponse(nombre, tipo, huerto, true));
                     call.enqueue(new Callback<PlantacionResponse>() {
@@ -265,7 +257,7 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
 
             builder.setPositiveButton(R.string.desactivar, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    HuertoService service = ServiceGenerator.createService(HuertoService.class,
+                    PlantacionService service = ServiceGenerator.createService(PlantacionService.class,
                             UtilToken.getToken(HuertoDetailActivity.this), TipoAutenticacion.JWT);
                     Call<PlantacionResponse> call = service.riegoAut(idPlantacion, new PlantacionResponse(nombre, tipo, huerto, false));
                     call.enqueue(new Callback<PlantacionResponse>() {

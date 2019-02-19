@@ -7,12 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -22,8 +20,6 @@ import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;

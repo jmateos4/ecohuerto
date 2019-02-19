@@ -13,12 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.triana.salesianos.ecohuerto20.model.HuertosResponse;
-import com.triana.salesianos.ecohuerto20.model.ResponseContainer;
 import com.triana.salesianos.ecohuerto20.model.UserResponse;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
-import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
 import com.triana.salesianos.ecohuerto20.retrofit.services.LoginService;
 
 import retrofit2.Call;

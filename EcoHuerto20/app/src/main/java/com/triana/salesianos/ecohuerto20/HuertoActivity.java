@@ -70,26 +70,6 @@ public class HuertoActivity extends AppCompatActivity
         dialog.show(getSupportFragmentManager(), "AddHuertoFragment");
     }
 
-    private void mostrarDialogEditUser() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Do you want to log out?")
-                .setTitle("Log out");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                UtilToken.setIdUser(HuertoActivity.this, null);
-                UtilToken.setToken(HuertoActivity.this, null);
-                finish();
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
