@@ -17,8 +17,10 @@ import android.widget.Toast;
 import com.triana.salesianos.ecohuerto20.interfaces.HuertoInteractionListener;
 import com.triana.salesianos.ecohuerto20.interfaces.PlantacionInteractionListener;
 import com.triana.salesianos.ecohuerto20.model.PlantacionResponse;
+import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceArduinoGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.ServiceGenerator;
 import com.triana.salesianos.ecohuerto20.retrofit.generator.TipoAutenticacion;
+import com.triana.salesianos.ecohuerto20.retrofit.services.ArduinoService;
 import com.triana.salesianos.ecohuerto20.retrofit.services.HuertoService;
 import com.triana.salesianos.ecohuerto20.retrofit.services.PlantacionService;
 
@@ -220,7 +222,26 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
                         public void onResponse(Call<PlantacionResponse> call, Response<PlantacionResponse> response) {
                             if (response.isSuccessful()) {
                                 new PlantacionResponse();
-                                startActivity(new Intent(HuertoDetailActivity.this, HuertoDetailActivity.class));
+                                ArduinoService service = ServiceArduinoGenerator.createService(ArduinoService.class);
+                                Call call1 = service.abrir();
+                                call1.enqueue(new Callback() {
+                                    @Override
+                                    public void onResponse(Call call1, Response response) {
+                                        if (response.isSuccessful()) {
+                                            Toast.makeText(HuertoDetailActivity.this, "Abierto satisfactoriamente", Toast.LENGTH_LONG);
+                                        } else {
+                                            Toast.makeText(HuertoDetailActivity.this, "No se ha abierto", Toast.LENGTH_LONG);
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call call1, Throwable t) {
+                                        // Toast
+                                        Log.i("onFailure", "error en retrofit");
+                                    }
+                                });
+                                startActivity(new Intent(HuertoDetailActivity.this, HuertoActivity.class));
                                 Toast.makeText(HuertoDetailActivity.this, "Activado satisfactoriamente", Toast.LENGTH_LONG);
                             } else {
                                 Toast.makeText(HuertoDetailActivity.this, "No se ha activado", Toast.LENGTH_LONG);
@@ -265,7 +286,26 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
                         public void onResponse(Call<PlantacionResponse> call, Response<PlantacionResponse> response) {
                             if (response.isSuccessful()) {
                                 new PlantacionResponse();
-                                startActivity(new Intent(HuertoDetailActivity.this, HuertoDetailActivity.class));
+                                ArduinoService service = ServiceArduinoGenerator.createService(ArduinoService.class);
+                                Call call1 = service.cerrar();
+                                call1.enqueue(new Callback() {
+                                    @Override
+                                    public void onResponse(Call call1, Response response) {
+                                        if (response.isSuccessful()) {
+                                            Toast.makeText(HuertoDetailActivity.this, "Cerrado satisfactoriamente", Toast.LENGTH_LONG);
+                                        } else {
+                                            Toast.makeText(HuertoDetailActivity.this, "No se ha cerrado", Toast.LENGTH_LONG);
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call call1, Throwable t) {
+                                        // Toast
+                                        Log.i("onFailure", "error en retrofit");
+                                    }
+                                });
+                                startActivity(new Intent(HuertoDetailActivity.this, HuertoActivity.class));
                                 Toast.makeText(HuertoDetailActivity.this, "Activado satisfactoriamente", Toast.LENGTH_LONG);
                             } else {
                                 Toast.makeText(HuertoDetailActivity.this, "No se ha activado", Toast.LENGTH_LONG);

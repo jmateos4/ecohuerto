@@ -90,7 +90,7 @@ public class HuertoDetailFragment extends Fragment {
                 public void onResponse(Call<HuertosResponse> call, Response<HuertosResponse> response) {
                     if (response.isSuccessful()) {
                         mItem = new HuertosResponse(idHuerto, response.body().getNombre(), response.body().getDireccion(), response.body().getFoto(), response.body().getEspacio(), response.body().getUser(), response.body().getCreatedAt(), response.body().getUpdatedAt());
-                        appBarLayout.setTitle(mItem.getNombre()+"\n↑Arrastra para más información↑");
+                        appBarLayout.setTitle(mItem.getNombre());
 
                         Glide
                                 .with(getContext())
