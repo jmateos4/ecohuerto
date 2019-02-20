@@ -226,8 +226,8 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
                                 Call call1 = service.abrir();
                                 call1.enqueue(new Callback() {
                                     @Override
-                                    public void onResponse(Call call1, Response response) {
-                                        if (response.isSuccessful()) {
+                                    public void onResponse(Call call1, Response response1) {
+                                        if (response1.isSuccessful()) {
                                             Toast.makeText(HuertoDetailActivity.this, "Abierto satisfactoriamente", Toast.LENGTH_LONG);
                                         } else {
                                             Toast.makeText(HuertoDetailActivity.this, "No se ha abierto", Toast.LENGTH_LONG);
@@ -241,7 +241,6 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
                                         Log.i("onFailure", "error en retrofit");
                                     }
                                 });
-                                startActivity(new Intent(HuertoDetailActivity.this, HuertoActivity.class));
                                 Toast.makeText(HuertoDetailActivity.this, "Activado satisfactoriamente", Toast.LENGTH_LONG);
                             } else {
                                 Toast.makeText(HuertoDetailActivity.this, "No se ha activado", Toast.LENGTH_LONG);
@@ -305,10 +304,9 @@ public class HuertoDetailActivity extends AppCompatActivity implements Plantacio
                                         Log.i("onFailure", "error en retrofit");
                                     }
                                 });
-                                startActivity(new Intent(HuertoDetailActivity.this, HuertoActivity.class));
-                                Toast.makeText(HuertoDetailActivity.this, "Activado satisfactoriamente", Toast.LENGTH_LONG);
+                                Toast.makeText(HuertoDetailActivity.this, "Desactivado satisfactoriamente", Toast.LENGTH_LONG);
                             } else {
-                                Toast.makeText(HuertoDetailActivity.this, "No se ha activado", Toast.LENGTH_LONG);
+                                Toast.makeText(HuertoDetailActivity.this, "No se ha desactivado", Toast.LENGTH_LONG);
                             }
 
                         }
