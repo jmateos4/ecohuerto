@@ -1,6 +1,7 @@
 package com.triana.salesianos.ecohuerto20;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -127,7 +128,10 @@ public class HuertoActivity extends AppCompatActivity
                 fab.show();
                 break;
             case R.id.logOut:
-
+                UtilToken.setIdUser(HuertoActivity.this, null);
+                UtilToken.setToken(HuertoActivity.this, null);
+                startActivity(new Intent(HuertoActivity.this, LoginActivity.class));
+                finish();
                 break;
         }
 
@@ -158,6 +162,7 @@ public class HuertoActivity extends AppCompatActivity
                 public void onClick(DialogInterface dialog, int id) {
                     UtilToken.setIdUser(HuertoActivity.this, null);
                     UtilToken.setToken(HuertoActivity.this, null);
+                    startActivity(new Intent(HuertoActivity.this, LoginActivity.class));
                     finish();
                 }
             });
