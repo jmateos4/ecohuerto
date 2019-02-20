@@ -21,8 +21,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btnLogin;
-    TextView btnRegistro;
+    Button btnLogin, btnRegistro;
     EditText email, password;
 
     @Override
@@ -31,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         btnLogin = findViewById(R.id.buttonLogin);
-        btnRegistro = findViewById(R.id.text_signup);
+        btnRegistro = findViewById(R.id.buttonRegistro);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
